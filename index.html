@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotización - Repisa de Madera de Pino</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --wood-dark: #5C3A1E;
+            --wood-medium: #8B5E3C;
+            --wood-light: #C49A6C;
+            --wood-pale: #E8D5B7;
+            --wood-bg: #FDF6EE;
+            --accent: #3D2B1F;
+            --text: #2C1810;
+            --text-light: #6B5B4F;
+            --white: #FFFFFF;
+            --border: #D4C4B0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--wood-bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--wood-dark) 0%, var(--accent) 50%, var(--wood-dark) 100%);
+            color: var(--white);
+            padding: 40px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 2px,
+                rgba(255,255,255,0.02) 2px,
+                rgba(255,255,255,0.02) 4px
+            );
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .header .subtitle {
+            font-size: 1em;
+            opacity: 0.85;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .header .engineer-name {
+            margin-top: 15px;
+            font-size: 1.1em;
+            font-weight: 500;
+            color: var(--wood-light);
+        }
+
+        .wood-divider {
+            height: 6px;
+            background: linear-gradient(90deg, var(--wood-dark), var(--wood-medium), var(--wood-light), var(--wood-medium), var(--wood-dark));
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        /* Quote Info Bar */
+        .quote-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 25px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .quote-info-item {
+            text-align: center;
+        }
+
+        .quote-info-item .label {
+            font-size: 0.75em;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .quote-info-item .value {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: var(--wood-dark);
+            margin-top: 4px;
+        }
+
+        /* Sections */
+        .section {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, var(--wood-medium), var(--wood-dark));
+            color: var(--white);
+            padding: 15px 25px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-body {
+            padding: 25px;
+        }
+
+        /* Project Description */
+        .project-desc {
+            font-size: 0.95em;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .project-desc strong {
+            color: var(--text);
+        }
+
+        /* Image Section */
+        .project-image {
+            width: 100%;
+            max-width: 600px;
+            display: block;
+            margin: 20px auto;
+            border-radius: 10px;
+            border: 3px solid var(--wood-light);
+            box-shadow: 0 8px 25px rgba(92, 58, 30, 0.15);
+        }
+
+        /* Video Section */
+        .video-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 3px solid var(--wood-light);
+            box-shadow: 0 8px 25px rgba(92, 58, 30, 0.15);
+        }
+
+        .video-container video {
+            width: 100%;
+            display: block;
+        }
+
+        /* Table */
+        .cost-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95em;
+        }
+
+        .cost-table thead th {
+            background: var(--wood-pale);
+            color: var(--wood-dark);
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.8em;
+            letter-spacing: 1px;
+            border-bottom: 2px solid var(--wood-light);
+        }
+
+        .cost-table thead th:last-child {
+            text-align: right;
+        }
+
+        .cost-table tbody td {
+            padding: 14px 15px;
+            border-bottom: 1px solid #f0e6d9;
+            vertical-align: top;
+        }
+
+        .cost-table tbody td:last-child {
+            text-align: right;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .cost-table tbody tr:hover {
+            background: rgba(196, 154, 108, 0.06);
+        }
+
+        .cost-table .item-name {
+            font-weight: 600;
+            color: var(--wood-dark);
+        }
+
+        .cost-table .item-desc {
+            font-size: 0.85em;
+            color: var(--text-light);
+            margin-top: 3px;
+        }
+
+        .cost-table .client-item td {
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        .cost-table .client-item .item-name {
+            color: var(--text-light);
+        }
+
+        /* Totals */
+        .totals-section {
+            border-top: 3px solid var(--wood-medium);
+            margin-top: 5px;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 15px;
+            font-size: 0.95em;
+        }
+
+        .total-row.subtotal {
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .total-row.grand-total {
+            background: linear-gradient(135deg, var(--wood-dark), var(--accent));
+            color: var(--white);
+            font-size: 1.3em;
+            font-weight: 700;
+            border-radius: 0 0 10px 10px;
+            padding: 18px 20px;
+            margin: 0 -1px -1px -1px;
+        }
+
+        .total-row .label {
+            font-weight: 500;
+        }
+
+        .total-row .amount {
+            font-weight: 700;
+        }
+
+        /* Badge for client-provided */
+        .badge {
+            display: inline-block;
+            background: var(--wood-pale);
+            color: var(--wood-dark);
+            font-size: 0.7em;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-left: 8px;
+        }
+
+        /* Notes */
+        .notes-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .notes-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #f0e6d9;
+            font-size: 0.9em;
+            color: var(--text-light);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .notes-list li:last-child {
+            border-bottom: none;
+        }
+
+        .notes-list li::before {
+            content: '▸';
+            color: var(--wood-medium);
+            font-weight: bold;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-light);
+            font-size: 0.85em;
+        }
+
+        .footer .signature-line {
+            width: 250px;
+            border-top: 2px solid var(--wood-dark);
+            margin: 30px auto 10px;
+            padding-top: 10px;
+            font-weight: 600;
+            color: var(--wood-dark);
+        }
+
+        .footer .title-line {
+            font-size: 0.9em;
+            color: var(--text-light);
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                padding: 15px;
+            }
+            .section {
+                break-inside: avoid;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.6em;
+            }
+            .quote-info {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <h1>Cotización de Proyecto</h1>
+            <div class="subtitle">Carpintería &amp; Diseño en Madera</div>
+            <div class="engineer-name">Ing. Alexandre Odin Cárdenas Medina</div>
+        </div>
+    </div>
+    <div class="wood-divider"></div>
+
+    <div class="container">
+
+        <!-- Quote Info -->
+        <div class="quote-info">
+            <div class="quote-info-item">
+                <div class="label">No. Cotización</div>
+                <div class="value">COT-2026-001</div>
+            </div>
+            <div class="quote-info-item">
+                <div class="label">Fecha</div>
+                <div class="value">20 de Marzo de 2026</div>
+            </div>
+            <div class="quote-info-item">
+                <div class="label">Vigencia</div>
+                <div class="value">15 días</div>
+            </div>
+            <div class="quote-info-item">
+                <div class="label">Moneda</div>
+                <div class="value">MXN (Pesos)</div>
+            </div>
+        </div>
+
+        <!-- Project Description -->
+        <div class="section">
+            <div class="section-header">
+                🪵 Descripción del Proyecto
+            </div>
+            <div class="section-body">
+                <p class="project-desc">
+                    Fabricación de <strong>repisa / consola decorativa de dos niveles</strong> en madera de pino,
+                    con acabado en <strong>aceite color café</strong>. El mueble cuenta con dos tablones horizontales
+                    unidos por columnas laterales y <strong>balaustras decorativas torneadas</strong> (proporcionadas por el cliente)
+                    en la sección central. Incluye preparación de superficie (lijado), instalación de tarugos para ensamble,
+                    aplicación de acabado y <strong>cableado interior</strong> para iluminación o conectividad.
+                </p>
+
+                <!-- Imagen del proyecto -->
+                <img src="data:image/png;base64," alt="Diseño 3D de la repisa" class="project-image"
+                     onerror="this.style.display='none'">
+            </div>
+        </div>
+
+        <!-- Video del Proyecto -->
+        <div class="section">
+            <div class="section-header">
+                🎥 Video del Proyecto
+            </div>
+            <div class="section-body">
+                <div class="video-container">
+                    <video controls preload="metadata">
+                        <source src="video_proyecto.mp4" type="video/mp4">
+                        Tu navegador no soporta la reproducción de video.
+                    </video>
+                </div>
+                <p style="text-align:center; font-size:0.85em; color:var(--text-light); margin-top:10px;">
+                    Vista previa del proyecto en video
+                </p>
+            </div>
+        </div>
+
+        <!-- Cost Breakdown -->
+        <div class="section">
+            <div class="section-header">
+                💰 Desglose de Costos
+            </div>
+            <div class="section-body" style="padding: 0;">
+                <table class="cost-table">
+                    <thead>
+                        <tr>
+                            <th>Concepto</th>
+                            <th>Costo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="item-name">Tablón de Madera de Pino</div>
+                                <div class="item-desc">Madera base para los dos niveles de la repisa</div>
+                            </td>
+                            <td>$1,000.00</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="item-name">Aceite / Tinte Color Café</div>
+                                <div class="item-desc">Acabado protector y decorativo para toda la superficie</div>
+                            </td>
+                            <td>$500.00</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="item-name">Lijas, Tarugos y Ferretería</div>
+                                <div class="item-desc">Material de lijado, tarugos de ensamble y accesorios varios</div>
+                            </td>
+                            <td>$200.00</td>
+                        </tr>
+                        <tr class="client-item">
+                            <td>
+                                <div class="item-name">Balaustras Decorativas (centro) <span class="badge">Proporcionado por cliente</span></div>
+                                <div class="item-desc">Piezas torneadas decorativas para la sección central</div>
+                            </td>
+                            <td>$0.00</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="item-name">Cableado e Instalación Eléctrica</div>
+                                <div class="item-desc">Cable, conectores y mano de obra de instalación eléctrica</div>
+                            </td>
+                            <td>$500.00</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="item-name">Mano de Obra</div>
+                                <div class="item-desc">Corte, ensamble, lijado, pintura y acabado final</div>
+                            </td>
+                            <td>$1,800.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="totals-section">
+                    <div class="total-row subtotal">
+                        <span class="label">Subtotal Materiales</span>
+                        <span class="amount">$2,200.00</span>
+                    </div>
+                    <div class="total-row subtotal">
+                        <span class="label">Mano de Obra</span>
+                        <span class="amount">$1,800.00</span>
+                    </div>
+                    <div class="total-row subtotal">
+                        <span class="label">Subtotal</span>
+                        <span class="amount">$4,000.00</span>
+                    </div>
+                    <div class="total-row subtotal">
+                        <span class="label">IVA (16%)</span>
+                        <span class="amount">$640.00</span>
+                    </div>
+                    <div class="total-row grand-total">
+                        <span class="label">TOTAL</span>
+                        <span class="amount">$4,640.00 MXN</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notes -->
+        <div class="section">
+            <div class="section-header">
+                📋 Notas y Condiciones
+            </div>
+            <div class="section-body">
+                <ul class="notes-list">
+                    <li>Las piezas decorativas del centro (balaustras) son proporcionadas por el cliente y no tienen costo adicional.</li>
+                    <li>El acabado será en aceite color café aplicado sobre madera de pino lijada.</li>
+                    <li>Se incluye cableado interior para iluminación o conectividad según las necesidades del proyecto.</li>
+                    <li>Se requiere un anticipo del 50% para iniciar el proyecto.</li>
+                    <li>El tiempo estimado de entrega es de 5 a 7 días hábiles a partir del anticipo.</li>
+                    <li>Esta cotización tiene una vigencia de 15 días a partir de la fecha de emisión.</li>
+                    <li>Los precios pueden variar si hay cambios en el diseño o materiales adicionales.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer / Signature -->
+        <div class="footer">
+            <div class="signature-line">
+                Ing. Alexandre Odin Cárdenas Medina
+            </div>
+            <div class="title-line">Carpintería &amp; Diseño en Madera</div>
+            <br>
+            <p style="margin-top: 15px; font-size: 0.8em; color: #999;">
+                Documento generado el 20 de Marzo de 2026
+            </p>
+        </div>
+
+    </div>
+
+</body>
+</html>
