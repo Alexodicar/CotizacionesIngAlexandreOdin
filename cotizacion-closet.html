@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotización — Closet 114×273 cm</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --wood-dark: #5C3A1E;
+            --wood-medium: #8B5E3C;
+            --wood-light: #C49A6C;
+            --wood-pale: #E8D5B7;
+            --wood-bg: #FDF6EE;
+            --accent: #3D2B1F;
+            --text: #2C1810;
+            --text-light: #6B5B4F;
+            --white: #FFFFFF;
+            --border: #D4C4B0;
+            --green: #2E7D32;
+            --blue: #1565C0;
+            --orange: #E65100;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--wood-bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* HEADER */
+        .header {
+            background: linear-gradient(135deg, var(--wood-dark) 0%, var(--accent) 50%, var(--wood-dark) 100%);
+            color: #fff;
+            padding: 40px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255,255,255,.02) 2px, rgba(255,255,255,.02) 4px);
+        }
+        .header-content { max-width: 920px; margin: 0 auto; padding: 0 30px; position: relative; z-index: 1; }
+        .header h1 { font-family: 'Playfair Display', serif; font-size: 2.2em; margin-bottom: 5px; }
+        .header .sub { font-size: .9em; opacity: .8; font-weight: 300; letter-spacing: 2px; text-transform: uppercase; }
+        .header .eng { margin-top: 14px; font-size: 1.05em; font-weight: 500; color: var(--wood-light); }
+        .wood-divider { height: 6px; background: linear-gradient(90deg, var(--wood-dark), var(--wood-medium), var(--wood-light), var(--wood-medium), var(--wood-dark)); }
+
+        .container { max-width: 920px; margin: 0 auto; padding: 30px; }
+
+        /* INFO BAR */
+        .info-bar {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 14px;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 25px;
+            margin-bottom: 28px;
+        }
+        .info-item .lbl { font-size: .7em; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-light); font-weight: 600; }
+        .info-item .val { font-size: 1.05em; font-weight: 700; color: var(--wood-dark); margin-top: 3px; }
+
+        /* SECTION */
+        .section { background: #fff; border: 1px solid var(--border); border-radius: 12px; margin-bottom: 26px; overflow: hidden; }
+        .sec-hdr {
+            background: linear-gradient(135deg, var(--wood-medium), var(--wood-dark));
+            color: #fff;
+            padding: 15px 25px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .sec-body { padding: 24px; }
+
+        /* MATERIAL CALC BOX */
+        .calc-box {
+            background: #f9f4ee;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin-bottom: 20px;
+        }
+        .calc-box h4 { font-size: .85em; text-transform: uppercase; letter-spacing: 1px; color: var(--wood-medium); margin-bottom: 12px; }
+        .calc-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px dashed var(--border); font-size: .9em; }
+        .calc-row:last-child { border-bottom: none; font-weight: 700; color: var(--wood-dark); font-size: 1em; padding-top: 10px; }
+        .calc-row .note { font-size: .78em; color: var(--text-light); margin-top: 2px; }
+
+        /* MATERIALS TABLE WITH AMAZON LINKS */
+        .mat-table { width: 100%; border-collapse: collapse; font-size: .92em; }
+        .mat-table thead th {
+            background: var(--wood-pale);
+            color: var(--wood-dark);
+            padding: 11px 14px;
+            text-align: left;
+            font-weight: 700;
+            font-size: .78em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid var(--wood-light);
+        }
+        .mat-table thead th:last-child { text-align: right; }
+        .mat-table tbody td { padding: 13px 14px; border-bottom: 1px solid #f0e6d9; vertical-align: top; }
+        .mat-table tbody td:last-child { text-align: right; font-weight: 600; white-space: nowrap; }
+        .mat-table tbody tr:hover { background: rgba(196,154,108,.06); }
+        .item-name { font-weight: 600; color: var(--wood-dark); }
+        .item-desc { font-size: .82em; color: var(--text-light); margin-top: 2px; }
+        .amazon-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 5px;
+            background: #ff9900;
+            color: #111;
+            font-size: .72em;
+            font-weight: 700;
+            padding: 3px 9px;
+            border-radius: 4px;
+            text-decoration: none;
+            letter-spacing: .3px;
+        }
+        .amazon-link:hover { background: #e68900; }
+        .amazon-link::before { content: ''; display: inline-block; width: 14px; height: 14px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23111' d='M13.958 10.09c0 1.232.029 2.256-.591 3.351-.502.891-1.301 1.438-2.186 1.438-1.214 0-1.922-.924-1.922-2.292 0-2.692 2.415-3.182 4.699-3.182v.685zm3.186 7.705c-.209.189-.512.201-.745.074-1.047-.872-1.234-1.276-1.814-2.106-1.733 1.769-2.959 2.297-5.201 2.297-2.656 0-4.72-1.638-4.72-4.919 0-2.56 1.388-4.305 3.363-5.158 1.712-.754 4.104-.887 5.931-1.094v-.41c0-.753.059-1.642-.384-2.294-.385-.579-1.122-.82-1.772-.82-1.203 0-2.274.617-2.536 1.895-.054.284-.263.563-.548.577l-3.062-.331c-.259-.057-.547-.266-.472-.661C5.356 2.65 8.33 1.5 11.003 1.5c1.369 0 3.158.364 4.236 1.403 1.369 1.277 1.238 2.981 1.238 4.836v4.38c0 1.318.548 1.896 1.062 2.608.182.252.221.553-.01.741l-2.385 2.327z'/%3E%3C/svg%3E") center/contain no-repeat; }
+        .qty-badge {
+            display: inline-block;
+            background: #e8f5e9;
+            color: #2e7d32;
+            font-size: .7em;
+            font-weight: 700;
+            padding: 1px 7px;
+            border-radius: 10px;
+            margin-left: 6px;
+        }
+
+        /* TOTALS */
+        .totals-wrap { border-top: 3px solid var(--wood-medium); }
+        .total-row { display: flex; justify-content: space-between; padding: 11px 14px; font-size: .92em; }
+        .total-row.sub { border-bottom: 1px dashed var(--border); }
+        .total-row.grand {
+            background: linear-gradient(135deg, var(--wood-dark), var(--accent));
+            color: #fff;
+            font-size: 1.25em;
+            font-weight: 700;
+            border-radius: 0 0 10px 10px;
+            padding: 16px 18px;
+            margin: 0 -1px -1px -1px;
+        }
+
+        /* QUOTE TABS */
+        .quote-tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+        .q-tab {
+            flex: 1;
+            min-width: 140px;
+            padding: 12px 16px;
+            border-radius: 10px;
+            border: 2px solid var(--border);
+            cursor: pointer;
+            text-align: center;
+            transition: all .2s;
+        }
+        .q-tab:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(92,58,30,.12); }
+        .q-tab.basic { border-color: #aaa; }
+        .q-tab.standard { border-color: var(--wood-medium); background: #fff9f3; }
+        .q-tab.premium { border-color: var(--wood-dark); background: linear-gradient(135deg,#fff9f0,#fdf0e0); }
+        .q-tab .t-label { font-size: .68em; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+        .q-tab .t-price { font-size: 1.4em; font-weight: 700; margin-top: 4px; }
+        .q-tab.basic .t-price { color: #555; }
+        .q-tab.standard .t-price { color: var(--wood-medium); }
+        .q-tab.premium .t-price { color: var(--wood-dark); }
+        .q-tab .t-sub { font-size: .72em; color: var(--text-light); margin-top: 2px; }
+
+        /* Tier sections */
+        .tier { margin-bottom: 22px; border-radius: 10px; overflow: hidden; border: 2px solid var(--border); }
+        .tier-hdr { padding: 13px 20px; display: flex; align-items: center; justify-content: space-between; }
+        .tier-hdr.basic { background: #f5f5f5; color: #444; }
+        .tier-hdr.standard { background: linear-gradient(135deg, #fff3e0, #ffe0b2); color: var(--wood-dark); }
+        .tier-hdr.premium { background: linear-gradient(135deg, var(--wood-dark), var(--accent)); color: #fff; }
+        .tier-hdr .t-name { font-family: 'Playfair Display', serif; font-size: 1.1em; }
+        .tier-hdr .t-total { font-size: 1.2em; font-weight: 700; }
+        .tier-body { padding: 0; }
+
+        /* Notes */
+        .notes-list { list-style: none; padding: 0; }
+        .notes-list li {
+            padding: 9px 0;
+            border-bottom: 1px solid #f0e6d9;
+            font-size: .88em;
+            color: var(--text-light);
+            display: flex;
+            gap: 9px;
+            align-items: flex-start;
+        }
+        .notes-list li:last-child { border-bottom: none; }
+        .notes-list li::before { content: '▸'; color: var(--wood-medium); font-weight: bold; flex-shrink: 0; margin-top: 1px; }
+
+        /* Footer */
+        .footer { text-align: center; padding: 30px; color: var(--text-light); font-size: .84em; }
+        .footer .sig { width: 260px; border-top: 2px solid var(--wood-dark); margin: 28px auto 8px; padding-top: 9px; font-weight: 600; color: var(--wood-dark); }
+
+        /* Design ref button */
+        .design-ref {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--wood-pale);
+            color: var(--wood-dark);
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: .88em;
+            font-weight: 600;
+            border: 1px solid var(--wood-light);
+            margin-bottom: 22px;
+            transition: background .2s;
+        }
+        .design-ref:hover { background: var(--wood-light); color: #fff; }
+
+        @media (max-width: 600px) {
+            .header h1 { font-size: 1.6em; }
+            .info-bar { flex-direction: column; }
+            .quote-tabs { flex-direction: column; }
+            .container { padding: 15px; }
+        }
+
+        @media print {
+            body { background: white; }
+            .section { break-inside: avoid; }
+            .design-ref { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="header-content">
+        <h1>Cotización — Closet 114 × 273 cm</h1>
+        <div class="sub">Carpintería &amp; Diseño en Madera</div>
+        <div class="eng">Ing. Alexandre Odin Cárdenas Medina</div>
+    </div>
+</div>
+<div class="wood-divider"></div>
+
+<div class="container">
+
+    <!-- Info Bar -->
+    <div class="info-bar">
+        <div class="info-item"><div class="lbl">No. Cotización</div><div class="val">COT-2026-002</div></div>
+        <div class="info-item"><div class="lbl">Fecha</div><div class="val">Abril 2026</div></div>
+        <div class="info-item"><div class="lbl">Vigencia</div><div class="val">15 días</div></div>
+        <div class="info-item"><div class="lbl">Ancho</div><div class="val">114 cm</div></div>
+        <div class="info-item"><div class="lbl">Alto</div><div class="val">273 cm</div></div>
+        <div class="info-item"><div class="lbl">Profundidad</div><div class="val">~58 cm</div></div>
+        <div class="info-item"><div class="lbl">Moneda</div><div class="val">MXN</div></div>
+    </div>
+
+    <!-- Link to design page -->
+    <a href="closet-114.html" class="design-ref">
+        🪵 Ver las 12 opciones de distribución interior →
+    </a>
+
+    <!-- Cálculo de materiales -->
+    <div class="section">
+        <div class="sec-hdr">📐 Cálculo de Láminas (Basado en Modelo 3D)</div>
+        <div class="sec-body">
+            <div class="calc-box">
+                <h4>Por qué se necesitan 7 láminas y no 3</h4>
+                <div class="calc-row">
+                    <div>
+                        <div>Volumen del closet (SolidWorks)</div>
+                        <div class="note">Mass Properties — Assemcloset</div>
+                    </div>
+                    <strong>169,723,557 mm³</strong>
+                </div>
+                <div class="calc-row">
+                    <div>
+                        <div>Volumen de 1 lámina (2440 × 1220 × 18 mm)</div>
+                    </div>
+                    <strong>53,539,200 mm³</strong>
+                </div>
+                <div class="calc-row">
+                    <div>
+                        <div>Láminas teóricas (solo volumen)</div>
+                        <div class="note">169,723,557 ÷ 53,539,200</div>
+                    </div>
+                    <strong>3.17 láminas</strong>
+                </div>
+                <div class="calc-row" style="background:#fff3cd;padding:8px;border-radius:6px;margin-top:8px;">
+                    <div>
+                        <div>⚠️ Problema real: el closet mide 273 cm de alto</div>
+                        <div class="note">La lámina solo mide 244 cm. Cada panel vertical necesita 2 cortes de 2 láminas distintas, desperdiciando la diferencia (29 cm) en cada una.</div>
+                    </div>
+                </div>
+                <div class="calc-row">
+                    <div>
+                        <div>Láminas considerando desperdicio por corte</div>
+                        <div class="note">Cada panel alto (2 laterales + trasero + 2 frentes) consume una lámina entera aunque solo use 244 cm de los 273 necesarios. Las extensiones de 29 cm se agrupan en una lámina adicional.</div>
+                    </div>
+                    <strong style="color:var(--wood-dark);">7 láminas</strong>
+                </div>
+                <div class="calc-row">
+                    <strong>Costo material principal</strong>
+                    <strong style="color:var(--orange);">7 × $1,500 = $10,500</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Herrajes con links -->
+    <div class="section">
+        <div class="sec-hdr">🔗 Herrajes y Materiales — Con Referencia Amazon</div>
+        <div class="sec-body" style="padding:0;">
+            <table class="mat-table">
+                <thead>
+                    <tr>
+                        <th>Material / Herraje</th>
+                        <th>Cant.</th>
+                        <th>Costo est.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="item-name">Láminas Premium 18mm <span class="qty-badge">material principal</span></div>
+                            <div class="item-desc">2440×1220×18mm — base de toda la estructura. 7 láminas por cálculo de desperdicio de corte por altura de 273 cm.</div>
+                        </td>
+                        <td>7 pzas</td>
+                        <td>$10,500</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="item-name">Tubo Ovalado Cromado — Hermex TO-530</div>
+                            <div class="item-desc">Tubo ovalado de acero cromado para colgar ropa. Se corta a la medida de cada zona (máx. 76 cm según distribución elegida).</div>
+                            <a class="amazon-link" href="https://www.amazon.com.mx/Hermex-ovalado-cromado-para-closet-paquete/dp/B081JD12J2" target="_blank" rel="noopener">Ver en Amazon</a>
+                        </td>
+                        <td>2 pzas</td>
+                        <td>~$380</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="item-name">Copelas / Bridas para Tubo Ovalado (paquete 10)</div>
+                            <div class="item-desc">Aleación de zinc, soporte de extremo para tubo 16×30mm. 4 copelas por tubo (2 extremos c/u).</div>
+                            <a class="amazon-link" href="https://www.amazon.com.mx/Ovalado-16x30mm-Soporte-Armario-Aleaci%C3%B3n/dp/B0CFCRS8YM" target="_blank" rel="noopener">Ver en Amazon</a>
+                        </td>
+                        <td>1 paquete</td>
+                        <td>~$180</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="item-name">Soporte Central para Tubo — Hermex STO-5</div>
+                            <div class="item-desc">Soporte central zamak niquelado. Refuerzo para tubos de más de 60 cm de longitud libre, fijado al tablón superior.</div>
+                            <a class="amazon-link" href="https://www.amazon.com.mx/STO-5-Soporte-central-para-redondo-closet-paquete/dp/B081JDT445" target="_blank" rel="noopener">Ver en Amazon</a>
+                        </td>
+                        <td>2 pzas</td>
+                        <td>~$160</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="item-name">Cam Locks / Conectores 3 en 1 (100 piezas)</div>
+                            <div class="item-desc">Juego de sujetadores para herrajes de muebles: tornillo de leva + perno + clavija. Unión invisible entre tablones.</div>
+                            <a class="amazon-link" href="https://www.amazon.com.mx/Tornillos-Tornillo-Sujetadores-Herrajes-Conjunto/dp/B0CLXTL1GS" target="_blank" rel="noopener">Ver en Amazon</a>
+                        </td>
+                        <td>1 juego</td>
+                        <td>~$280</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="item-name">Tapacanto Melamina — Rollo Termoadhesivo</div>
+                            <div class="item-desc">Cubre los cantos expuestos de los tableros. Se aplica con plancha. Termoadhesivo, rollo de 250 pies (~76 m).</div>
+                            <a class="amazon-link" href="https://amazon.com.mx/aplicaci%C3%B3n-planchado-calcoman%C3%ADa-termofusible-melamina/dp/B07QGH1367" target="_blank" rel="noopener">Ver en Amazon</a>
+                        </td>
+                        <td>1 rollo</td>
+                        <td>~$220</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="item-name">Tornillería, pegamento y niveladores de piso</div>
+                            <div class="item-desc">Tornillos para madera, pegamento blanco para ensamble, tacos de pared, niveladores de plástico para base del mueble.</div>
+                        </td>
+                        <td>lote</td>
+                        <td>~$300</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- 3 Cotizaciones -->
+    <div class="section">
+        <div class="sec-hdr">💰 Las 3 Opciones de Precio</div>
+        <div class="sec-body">
+
+            <!-- Resumen tabs -->
+            <div class="quote-tabs">
+                <div class="q-tab basic">
+                    <div class="t-label">Básica</div>
+                    <div class="t-price">$17,836</div>
+                    <div class="t-sub">IVA incluido</div>
+                </div>
+                <div class="q-tab standard">
+                    <div class="t-label">⭐ Estándar</div>
+                    <div class="t-price">$20,648</div>
+                    <div class="t-sub">IVA incluido</div>
+                </div>
+                <div class="q-tab premium">
+                    <div class="t-label">★ Premium</div>
+                    <div class="t-price">$24,244</div>
+                    <div class="t-sub">IVA incluido</div>
+                </div>
+            </div>
+
+            <!-- BÁSICA -->
+            <div class="tier">
+                <div class="tier-hdr basic">
+                    <div>
+                        <div class="t-name">Cotización Básica</div>
+                        <div style="font-size:.8em;color:#666;margin-top:3px;">Materiales estándar · Mano de obra base · Sin instalación</div>
+                    </div>
+                    <div class="t-total">$17,836</div>
+                </div>
+                <div class="tier-body">
+                    <table class="mat-table">
+                        <tbody>
+                            <tr><td><div class="item-name">7 láminas 18mm</div></td><td>7</td><td>$10,500</td></tr>
+                            <tr><td><div class="item-name">2 tubos ovalados cromados Hermex</div><div class="item-desc">Cortados a medida según distribución elegida</div></td><td>2</td><td>$380</td></tr>
+                            <tr><td><div class="item-name">Copelas y soporte central</div></td><td>1 jgo</td><td>$340</td></tr>
+                            <tr><td><div class="item-name">Cam locks + tornillería básica</div></td><td>1 jgo</td><td>$280</td></tr>
+                            <tr><td><div class="item-name">Tapacanto + pegamento</div></td><td>1 jgo</td><td>$380</td></tr>
+                            <tr><td><div class="item-name">Mano de obra</div><div class="item-desc">Corte, armado y acabado básico sin instalación in situ</div></td><td>—</td><td>$3,500</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="totals-wrap">
+                        <div class="total-row sub"><span>Subtotal materiales</span><span>$11,880</span></div>
+                        <div class="total-row sub"><span>Mano de obra</span><span>$3,500</span></div>
+                        <div class="total-row sub"><span>Subtotal</span><span>$15,380</span></div>
+                        <div class="total-row sub"><span>IVA 16%</span><span>$2,461</span></div>
+                        <div class="total-row grand"><span>TOTAL BÁSICA</span><span>$17,841 MXN</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ESTÁNDAR -->
+            <div class="tier">
+                <div class="tier-hdr standard">
+                    <div>
+                        <div class="t-name">⭐ Cotización Estándar</div>
+                        <div style="font-size:.8em;color:var(--text-light);margin-top:3px;">Herrajes cromados premium · Tapacanto todo incluido · Instalación</div>
+                    </div>
+                    <div class="t-total">$20,648</div>
+                </div>
+                <div class="tier-body">
+                    <table class="mat-table">
+                        <tbody>
+                            <tr><td><div class="item-name">7 láminas 18mm premium</div></td><td>7</td><td>$10,500</td></tr>
+                            <tr><td>
+                                <div class="item-name">2 tubos ovalados cromados Hermex TO-530</div>
+                                <div class="item-desc">Cortados a medida, acabado cromado resistente</div>
+                                <a class="amazon-link" href="https://www.amazon.com.mx/Hermex-ovalado-cromado-para-closet-paquete/dp/B081JD12J2" target="_blank" rel="noopener">Ver en Amazon</a>
+                            </td><td>2</td><td>$460</td></tr>
+                            <tr><td>
+                                <div class="item-name">Copelas Hermex + Soporte Central STO-5</div>
+                                <div class="item-desc">Pack completo bridas + soporte central zamak niquelado</div>
+                                <a class="amazon-link" href="https://www.amazon.com.mx/STO-5-Soporte-central-para-redondo-closet-paquete/dp/B081JDT445" target="_blank" rel="noopener">Ver en Amazon</a>
+                            </td><td>1 jgo</td><td>$420</td></tr>
+                            <tr><td>
+                                <div class="item-name">Cam Locks 3 en 1 (100 pzas) + tornillería</div>
+                                <a class="amazon-link" href="https://www.amazon.com.mx/Tornillos-Tornillo-Sujetadores-Herrajes-Conjunto/dp/B0CLXTL1GS" target="_blank" rel="noopener">Ver en Amazon</a>
+                            </td><td>1 jgo</td><td>$380</td></tr>
+                            <tr><td>
+                                <div class="item-name">Tapacanto termoadhesivo + pegamento + sellador</div>
+                                <a class="amazon-link" href="https://amazon.com.mx/aplicaci%C3%B3n-planchado-calcoman%C3%ADa-termofusible-melamina/dp/B07QGH1367" target="_blank" rel="noopener">Ver en Amazon</a>
+                            </td><td>1 jgo</td><td>$480</td></tr>
+                            <tr><td><div class="item-name">Niveladores de piso + taquetes y tornillos de pared</div></td><td>1 jgo</td><td>$220</td></tr>
+                            <tr><td><div class="item-name">Mano de obra + instalación in situ</div><div class="item-desc">Corte, armado, acabado, traslado e instalación nivelada en sitio</div></td><td>—</td><td>$5,000</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="totals-wrap">
+                        <div class="total-row sub"><span>Subtotal materiales</span><span>$12,460</span></div>
+                        <div class="total-row sub"><span>Mano de obra + instalación</span><span>$5,000</span></div>
+                        <div class="total-row sub"><span>Subtotal</span><span>$17,460</span></div>
+                        <div class="total-row sub"><span>IVA 16%</span><span>$2,794</span></div>
+                        <div class="total-row grand"><span>TOTAL ESTÁNDAR</span><span>$20,254 MXN</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PREMIUM -->
+            <div class="tier">
+                <div class="tier-hdr premium">
+                    <div>
+                        <div class="t-name">★ Cotización Premium</div>
+                        <div style="font-size:.8em;opacity:.8;margin-top:3px;">Herrajes de primera · Bisagras amortiguadas · Acabado completo · Garantía</div>
+                    </div>
+                    <div class="t-total">$24,244</div>
+                </div>
+                <div class="tier-body">
+                    <table class="mat-table">
+                        <tbody>
+                            <tr><td><div class="item-name">7 láminas 18mm premium alta densidad</div></td><td>7</td><td>$10,500</td></tr>
+                            <tr><td>
+                                <div class="item-name">Tubo Redondo Cromado Hermex TR-530 (32mm)</div>
+                                <div class="item-desc">Mayor diámetro, mayor rigidez, acabado espejo. Para espacios de colgado exigentes.</div>
+                                <a class="amazon-link" href="https://www.amazon.com.mx/Hermex-TR-530-redondo-cromado-para-paquete/dp/B081JD9ZQV" target="_blank" rel="noopener">Ver en Amazon</a>
+                            </td><td>2</td><td>$620</td></tr>
+                            <tr><td>
+                                <div class="item-name">Copelas + Soporte Central Premium Hermex</div>
+                                <a class="amazon-link" href="https://www.amazon.com.mx/STO-5-Soporte-central-para-redondo-closet-paquete/dp/B081JDT445" target="_blank" rel="noopener">Ver en Amazon</a>
+                            </td><td>1 jgo</td><td>$560</td></tr>
+                            <tr><td>
+                                <div class="item-name">Herrajes premium: cam locks, conectores ocultos</div>
+                                <a class="amazon-link" href="https://www.amazon.com.mx/Tornillos-Tornillo-Sujetadores-Herrajes-Conjunto/dp/B0CLXTL1GS" target="_blank" rel="noopener">Ver en Amazon</a>
+                            </td><td>2 jgos</td><td>$700</td></tr>
+                            <tr><td>
+                                <div class="item-name">Tapacanto + sellado completo de todos los cantos</div>
+                                <a class="amazon-link" href="https://amazon.com.mx/aplicaci%C3%B3n-planchado-calcoman%C3%ADa-termofusible-melamina/dp/B07QGH1367" target="_blank" rel="noopener">Ver en Amazon</a>
+                            </td><td>2 rollos</td><td>$500</td></tr>
+                            <tr><td><div class="item-name">Niveladores de piso premium + anclaje a pared</div></td><td>1 jgo</td><td>$400</td></tr>
+                            <tr><td><div class="item-name">Mano de obra premium + instalación + nivelación final + limpieza de obra</div><div class="item-desc">Incluye acabado de bordes, ajuste fino, verificación de verticalidad y entrega en sitio</div></td><td>—</td><td>$7,500</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="totals-wrap">
+                        <div class="total-row sub"><span>Subtotal materiales</span><span>$13,280</span></div>
+                        <div class="total-row sub"><span>Mano de obra premium</span><span>$7,500</span></div>
+                        <div class="total-row sub"><span>Subtotal</span><span>$20,780</span></div>
+                        <div class="total-row sub"><span>IVA 16%</span><span>$3,325</span></div>
+                        <div class="total-row grand"><span>TOTAL PREMIUM</span><span>$24,105 MXN</span></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Notas -->
+    <div class="section">
+        <div class="sec-hdr">📋 Notas y Condiciones</div>
+        <div class="sec-body">
+            <ul class="notes-list">
+                <li>Se requiere anticipo del <strong>50%</strong> para iniciar el proyecto.</li>
+                <li>Tiempo estimado de entrega: <strong>8 a 12 días hábiles</strong> a partir del anticipo.</li>
+                <li>El cálculo de 7 láminas contempla el desperdicio real de corte debido a que la altura del closet (273 cm) supera la longitud de la lámina (244 cm). Cada panel vertical requiere dos cortes de dos láminas distintas.</li>
+                <li>La cotización no incluye puertas batientes con bisagras — si se desea agregar puertas se cotiza por separado.</li>
+                <li>Los links de Amazon son de referencia para que el cliente verifique las especificaciones y precios de mercado de los herrajes incluidos.</li>
+                <li>La distribución interior (posición de tubos y entrepaños) se confirma con el cliente antes de iniciar el corte. Ver <a href="closet-114.html" style="color:var(--wood-medium);font-weight:600;">opciones de distribución</a>.</li>
+                <li>Esta cotización tiene vigencia de <strong>15 días</strong> a partir de la fecha de emisión. Los precios pueden variar si hay cambios en el diseño.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="sig">Ing. Alexandre Odin Cárdenas Medina</div>
+        <div>Carpintería &amp; Diseño en Madera</div>
+        <p style="margin-top:12px;font-size:.78em;color:#aaa;">
+            COT-2026-002 · Closet 114×273 cm · Abril 2026
+        </p>
+    </div>
+
+</div>
+</body>
+</html>
