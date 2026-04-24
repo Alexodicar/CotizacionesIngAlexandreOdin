@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotización — ViperPadel Almacén</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+        :root {
+            --wood-dark:#5C3A1E; --wood-medium:#8B5E3C; --wood-light:#C49A6C;
+            --wood-pale:#E8D5B7; --wood-bg:#FDF6EE; --accent:#3D2B1F;
+            --text:#2C1810; --text-light:#6B5B4F; --white:#FFFFFF; --border:#D4C4B0;
+            --green:#2E7D32; --orange:#E65100; --box:#1a2540; --box-line:#0d1530;
+        }
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:'Inter',sans-serif;background:var(--wood-bg);color:var(--text);line-height:1.6;}
+
+        .header{background:linear-gradient(135deg,var(--wood-dark) 0%,var(--accent) 50%,var(--wood-dark) 100%);color:#fff;padding:40px 0;position:relative;overflow:hidden;}
+        .header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 2px,rgba(255,255,255,.02) 2px,rgba(255,255,255,.02) 4px);}
+        .header-content{max-width:960px;margin:0 auto;padding:0 30px;position:relative;z-index:1;}
+        .header h1{font-family:'Playfair Display',serif;font-size:2.2em;margin-bottom:5px;}
+        .header .sub{font-size:.9em;opacity:.8;font-weight:300;letter-spacing:2px;text-transform:uppercase;}
+        .header .eng{margin-top:14px;font-size:1.05em;font-weight:500;color:var(--wood-light);}
+        .wood-divider{height:6px;background:linear-gradient(90deg,var(--wood-dark),var(--wood-medium),var(--wood-light),var(--wood-medium),var(--wood-dark));}
+        .container{max-width:960px;margin:0 auto;padding:30px;}
+
+        .info-bar{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px 25px;margin-bottom:26px;}
+        .info-item .lbl{font-size:.7em;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-light);font-weight:600;}
+        .info-item .val{font-size:1.05em;font-weight:700;color:var(--wood-dark);margin-top:3px;}
+
+        .section{background:#fff;border:1px solid var(--border);border-radius:12px;margin-bottom:26px;overflow:hidden;}
+        .sec-hdr{background:linear-gradient(135deg,var(--wood-medium),var(--wood-dark));color:#fff;padding:15px 25px;font-family:'Playfair Display',serif;font-size:1.15em;display:flex;align-items:center;gap:10px;}
+        .sec-body{padding:24px;}
+
+        /* OPTIONS GRID */
+        .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+        @media(max-width:760px){.grid3{grid-template-columns:repeat(2,1fr);}}
+        @media(max-width:480px){.grid3{grid-template-columns:1fr;}}
+        .opt-card{border:1.5px solid var(--border);border-radius:9px;overflow:hidden;}
+        .opt-card-hdr{padding:9px 12px;font-size:.82em;}
+        .opt-card-hdr .n{font-size:.65em;font-weight:700;text-transform:uppercase;letter-spacing:1px;opacity:.7;}
+        .opt-card-hdr .ttl{font-family:'Playfair Display',serif;font-size:.95em;font-weight:700;margin-top:1px;}
+        .opt-card-hdr .sp{font-size:.72em;opacity:.78;margin-top:2px;}
+        .opt-card-hdr.g{background:#e8f5e9;color:#2e7d32;}
+        .opt-card-hdr.b{background:#e3f2fd;color:#1565c0;}
+        .opt-card-hdr.o{background:#fff3e0;color:#e65100;}
+        .opt-card-hdr.p{background:#f3e5f5;color:#6a1b9a;}
+        .opt-svg{background:#f5f1ec;display:flex;justify-content:center;padding:10px 4px;border-top:1px solid var(--border);}
+
+        /* LEGEND */
+        .legend{display:flex;flex-wrap:wrap;gap:18px;margin-bottom:18px;font-size:.82em;color:var(--text-light);}
+        .legend .item{display:flex;align-items:center;gap:7px;}
+        .legend .sw{width:18px;height:12px;border:1px solid #888;border-radius:2px;}
+
+        /* CALC BOX */
+        .calc-box{background:#f9f4ee;border:1px solid var(--border);border-radius:10px;padding:18px 22px;}
+        .calc-box h4{font-size:.82em;text-transform:uppercase;letter-spacing:1px;color:var(--wood-medium);margin-bottom:12px;}
+        .calc-row{display:flex;justify-content:space-between;align-items:flex-start;padding:7px 0;border-bottom:1px dashed var(--border);font-size:.9em;gap:12px;}
+        .calc-row:last-child{border-bottom:none;font-weight:700;color:var(--wood-dark);font-size:1em;padding-top:10px;}
+        .calc-row .note{font-size:.77em;color:var(--text-light);margin-top:2px;}
+        .calc-row.sub{font-weight:700;background:#f0e7da;margin:6px -22px;padding:9px 22px;border-bottom:none;}
+
+        /* TABLES */
+        .mat-table{width:100%;border-collapse:collapse;font-size:.92em;}
+        .mat-table thead th{background:var(--wood-pale);color:var(--wood-dark);padding:11px 14px;text-align:left;font-weight:700;font-size:.78em;text-transform:uppercase;letter-spacing:1px;border-bottom:2px solid var(--wood-light);}
+        .mat-table thead th:last-child{text-align:right;}
+        .mat-table tbody td{padding:13px 14px;border-bottom:1px solid #f0e6d9;vertical-align:top;}
+        .mat-table tbody td:last-child{text-align:right;font-weight:600;white-space:nowrap;}
+        .mat-table tbody tr:hover{background:rgba(196,154,108,.06);}
+        .item-name{font-weight:600;color:var(--wood-dark);}
+        .item-desc{font-size:.82em;color:var(--text-light);margin-top:2px;}
+
+        /* TOTALS */
+        .totals-wrap{border-top:3px solid var(--wood-medium);}
+        .total-row{display:flex;justify-content:space-between;padding:11px 14px;font-size:.92em;}
+        .total-row.sub{border-bottom:1px dashed var(--border);}
+        .total-row.grand{background:linear-gradient(135deg,var(--wood-dark),var(--accent));color:#fff;font-size:1.25em;font-weight:700;border-radius:0 0 10px 10px;padding:16px 18px;margin:0 -1px -1px -1px;}
+
+        /* QUOTE TABS */
+        .quote-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;}
+        .q-tab{flex:1;min-width:140px;padding:12px 16px;border-radius:10px;border:2px solid var(--border);text-align:center;}
+        .q-tab.basic{border-color:#aaa;}
+        .q-tab.standard{border-color:var(--wood-medium);background:#fff9f3;}
+        .q-tab.premium{border-color:var(--wood-dark);background:linear-gradient(135deg,#fff9f0,#fdf0e0);}
+        .q-tab .t-label{font-size:.68em;text-transform:uppercase;letter-spacing:1px;font-weight:700;}
+        .q-tab .t-price{font-size:1.4em;font-weight:700;margin-top:4px;}
+        .q-tab.basic .t-price{color:#555;}
+        .q-tab.standard .t-price{color:var(--wood-medium);}
+        .q-tab.premium .t-price{color:var(--wood-dark);}
+        .q-tab .t-sub{font-size:.72em;color:var(--text-light);margin-top:2px;}
+
+        /* TIERS */
+        .tier{margin-bottom:22px;border-radius:10px;overflow:hidden;border:2px solid var(--border);}
+        .tier-hdr{padding:13px 20px;display:flex;align-items:center;justify-content:space-between;}
+        .tier-hdr.basic{background:#f5f5f5;color:#444;}
+        .tier-hdr.standard{background:linear-gradient(135deg,#fff3e0,#ffe0b2);color:var(--wood-dark);}
+        .tier-hdr.premium{background:linear-gradient(135deg,var(--wood-dark),var(--accent));color:#fff;}
+        .tier-hdr .t-name{font-family:'Playfair Display',serif;font-size:1.1em;}
+        .tier-hdr .t-total{font-size:1.2em;font-weight:700;}
+
+        /* NOTES */
+        .notes-list{list-style:none;padding:0;}
+        .notes-list li{padding:9px 0;border-bottom:1px solid #f0e6d9;font-size:.88em;color:var(--text-light);display:flex;gap:9px;align-items:flex-start;line-height:1.5;}
+        .notes-list li:last-child{border-bottom:none;}
+        .notes-list li::before{content:'▸';color:var(--wood-medium);font-weight:bold;flex-shrink:0;margin-top:1px;}
+
+        .footer{text-align:center;padding:30px;color:var(--text-light);font-size:.84em;}
+        .footer .sig{width:260px;border-top:2px solid var(--wood-dark);margin:28px auto 8px;padding-top:9px;font-weight:600;color:var(--wood-dark);}
+
+        @media(max-width:600px){.header h1{font-size:1.6em;}.info-bar,.quote-tabs{flex-direction:column;}.container{padding:15px;}}
+        @media print{body{background:white;}.section{break-inside:avoid;}}
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="header-content">
+        <h1>Cotización — ViperPadel Almacén</h1>
+        <div class="sub">Carpintería &amp; Diseño en Madera</div>
+        <div class="eng">Ing. Alexandre Odin Cárdenas Medina</div>
+    </div>
+</div>
+<div class="wood-divider"></div>
+
+<div class="container">
+
+    <!-- Info Bar -->
+    <div class="info-bar">
+        <div class="info-item"><div class="lbl">No. Cotización</div><div class="val">COT-2026-003</div></div>
+        <div class="info-item"><div class="lbl">Fecha</div><div class="val">Abril 2026</div></div>
+        <div class="info-item"><div class="lbl">Vigencia</div><div class="val">15 días</div></div>
+        <div class="info-item"><div class="lbl">Ancho</div><div class="val">240 cm</div></div>
+        <div class="info-item"><div class="lbl">Alto</div><div class="val">250 cm</div></div>
+        <div class="info-item"><div class="lbl">Profundidad</div><div class="val">~60 cm</div></div>
+        <div class="info-item"><div class="lbl">Cliente</div><div class="val">ViperPadel</div></div>
+    </div>
+
+    <!-- VIDEO -->
+    <div class="section">
+        <div class="sec-hdr">🎥 Vista Previa del Proyecto</div>
+        <div class="sec-body" style="text-align:center;">
+            <div style="max-width:640px;margin:0 auto;border-radius:10px;overflow:hidden;border:3px solid var(--wood-light);box-shadow:0 8px 25px rgba(92,58,30,.15);">
+                <video controls preload="metadata" style="width:100%;display:block;">
+                    <source src="almacenpadel.mp4" type="video/mp4">
+                    Tu navegador no soporta la reproducción de video.
+                </video>
+            </div>
+            <p style="margin-top:10px;font-size:.84em;color:var(--text-light);">Modelo 3D del almacén — 240 × 250 cm</p>
+        </div>
+    </div>
+
+    <!-- OPCIONES DE DISTRIBUCIÓN -->
+    <div class="section">
+        <div class="sec-hdr">📦 Opciones de Distribución</div>
+        <div class="sec-body">
+            <p style="font-size:.9em;color:var(--text-light);margin-bottom:14px;">
+                <strong>Restricciones del diseño (según modelo SolidWorks):</strong><br>
+                • <strong>Columna izquierda</strong> (zona de colgado con puerta corrediza) — fija, no cambia entre opciones.<br>
+                • <strong>Columnas central y derecha</strong> — altura máxima de uso 2.10 m (los 40 cm superiores quedan como zona de papelería).<br>
+                • <strong>Columna derecha</strong> contiene siempre 2 sub-módulos: uno libre de <strong>80 × 120 cm</strong> (obligatorio) y otro de <strong>80 × 90 cm</strong> (con cajas o entrepaños).<br>
+                • <strong>Columna central</strong> es la que más varía: puede ir con cajas, con entrepaños libres, o abierta con agarraderas laterales para mover una caja grande.
+            </p>
+            <div class="legend">
+                <div class="item"><span class="sw" style="background:#1a2540;"></span> Caja de almacén (cliente)</div>
+                <div class="item"><span class="sw" style="background:#fff;"></span> Espacio libre 80×120</div>
+                <div class="item"><span class="sw" style="background:#d4c4b0;opacity:.55;"></span> Zona papelería / colgar</div>
+            </div>
+
+            <div class="grid3">
+
+<!-- ============================================================
+     Sistema de coordenadas SVG (todas las opciones)
+     viewBox: 200 × 208  (representa 240 cm × 250 cm)
+     escala: ~0.78 px/cm
+     Cabinet outer: x=4..196, y=4..204
+     Inner area:    x=10..190, y=10..198 (180×188 px)
+
+     COLUMNAS:
+     · LEFT  (colgado fijo): x=10..58  (48 px ≈ 60 cm)
+     · DIV1: x=58..62 (4 px)
+     · MID                 : x=62..126 (64 px ≈ 80 cm)
+     · DIV2: x=126..130 (4 px)
+     · RIGHT               : x=130..190 (60 px ≈ 75 cm)
+
+     ALTURAS (MID y RIGHT):
+     · Papelería arriba: y=10..40 (30 px ≈ 40 cm)
+     · Divisor:          y=40..43
+     · Zona útil:        y=43..198 (155 px ≈ 210 cm máx)
+     · 80×120 = 88 px,  80×90 = 64 px (≈ 152 px + 3 px divisor)
+
+     LEFT (colgado, FIJO):
+     · 2 niveles · divisor a y=104
+     · Puerta corrediza indicada con líneas verticales
+     ============================================================ -->
+
+<!-- OPT 1 — BASE (referencia SolidWorks) -->
+<div class="opt-card"><div class="opt-card-hdr g"><div class="n">01 · BASE</div><div class="ttl">Centro 5 Cajas · Hueco Abajo D.</div><div class="sp">Distribución del SolidWorks · 8 cajas</div></div>
+<div class="opt-svg"><svg width="180" height="188" viewBox="0 0 200 208" xmlns="http://www.w3.org/2000/svg">
+  <rect x="4" y="4" width="192" height="200" rx="3" fill="#e8ddd0" stroke="#5C3A1E" stroke-width="3"/>
+  <rect x="4" y="198" width="192" height="6" rx="2" fill="#5C3A1E"/><rect x="4" y="4" width="192" height="6" rx="2" fill="#5C3A1E"/>
+  <rect x="4" y="10" width="6" height="188" fill="#c9b99a"/><rect x="190" y="10" width="6" height="188" fill="#c9b99a"/>
+  <rect x="58" y="10" width="4" height="188" fill="#8B5E3C"/>
+  <rect x="126" y="10" width="4" height="188" fill="#8B5E3C"/>
+  <!-- LEFT: hanging closet with door -->
+  <rect x="10" y="10" width="48" height="188" fill="#d4c4b0" opacity="0.45"/>
+  <rect x="10" y="103" width="48" height="3" fill="#8B5E3C"/>
+  <line x1="14" y1="22" x2="54" y2="22" stroke="#666" stroke-width="1.3"/><circle cx="14" cy="22" r="1.4" fill="#5C3A1E"/><circle cx="54" cy="22" r="1.4" fill="#5C3A1E"/>
+  <line x1="14" y1="115" x2="54" y2="115" stroke="#666" stroke-width="1.3"/><circle cx="14" cy="115" r="1.4" fill="#5C3A1E"/><circle cx="54" cy="115" r="1.4" fill="#5C3A1E"/>
+  <text x="34" y="60" font-size="6" fill="#5C3A1E" text-anchor="middle" font-style="italic">colgar</text>
+  <text x="34" y="155" font-size="6" fill="#5C3A1E" text-anchor="middle" font-style="italic">colgar</text>
+  <line x1="50" y1="14" x2="50" y2="194" stroke="#5C3A1E" stroke-width="0.5" stroke-dasharray="2,2"/>
+  <text x="34" y="190" font-size="4.5" fill="#5C3A1E" text-anchor="middle" font-style="italic">puerta corrediza</text>
+  <!-- MIDDLE: papelería + 5 cajas -->
+  <rect x="62" y="10" width="64" height="30" fill="#d4c4b0" opacity="0.55"/>
+  <text x="94" y="28" font-size="5.5" fill="#5C3A1E" text-anchor="middle" font-style="italic">papelería</text>
+  <rect x="62" y="40" width="64" height="3" fill="#5C3A1E"/>
+  <rect x="62" y="74" width="64" height="2" fill="#8B5E3C"/>
+  <rect x="62" y="105" width="64" height="2" fill="#8B5E3C"/>
+  <rect x="62" y="136" width="64" height="2" fill="#8B5E3C"/>
+  <rect x="62" y="167" width="64" height="2" fill="#8B5E3C"/>
+  <rect x="65" y="44" width="58" height="29" fill="#1a2540" stroke="#0d1530"/>
+  <rect x="65" y="77" width="58" height="27" fill="#1a2540" stroke="#0d1530"/>
+  <rect x="65" y="108" width="58" height="27" fill="#1a2540" stroke="#0d1530"/>
+  <rect x="65" y="139" width="58" height="27" fill="#1a2540" stroke="#0d1530"/>
+  <rect x="65" y="169" width="58" height="28" fill="#1a2540" stroke="#0d1530"/>
+  <!-- RIGHT: papelería + 80×90 cajas (3) arriba + 80×120 libre abajo -->
+  <rect x="130" y="10" width="60" height="30" fill="#d4c4b0" opacity="0.55"/>
+  <text x="160" y="28" font-size="5.5" fill="#5C3A1E" text-anchor="middle" font-style="italic">papelería</text>
+  <rect x="130" y="40" width="60" height="3" fill="#5C3A1E"/>
+  <!-- 80×90 con 3 cajas arriba -->
+  <rect x="130" y="64" width="60" height="2" fill="#8B5E3C"/>
+  <rect x="130" y="86" width="60" height="2" fill="#8B5E3C"/>
+  <rect x="133" y="44" width="54" height="20" fill="#1a2540" stroke="#0d1530"/>
+  <rect x="133" y="66" width="54" height="20" fill="#1a2540" stroke="#0d1530"/>
+  <rect x="133" y="88" width="54" height="20" fill="#1a2540" stroke="#0d1530"/>
+  <!-- divisor entre sub-módulos -->
+  <rect x="130" y="108" width="60" height="3" fill="#5C3A1E"/>
+  <!-- 80×120 libre abajo -->
+  <rect x="130" y="111" width="60" height="87" fill="#fff" stroke="#1565c0" stroke-dasharray="3,2" stroke-width="1.5"/>
+  <text x="160" y="150" font-size="7" fill="#1565c0" text-anchor="middle" font-weight="bold">80×120</text>
+  <text x="160" y="161" font-size="6" fill="#1565c0" text-anchor="middle">libre</text>
+</svg></div></div>
+
+<!-- OPT 2 — Hueco Arriba D. -->
+<div class="opt-card"><div class="opt-card-hdr g"><div class="n">02</div><div class="ttl">Centro 5 Cajas · Hueco Arriba D.</div><div class="sp">Caja grande accesible · 8 cajas</div></div>
+<div class="opt-svg"><svg width="180" height="188" viewBox="0 0 200 208" xmlns="http://www.w3.org/2000/svg">
+  <rect x="4" y="4" width="192" height="200" rx="3" fill="#e8ddd0" stroke="#5C3A1E" stroke-width="3"/>
+  <rect x="4" y="198" width="192" height="6" rx="2" fill="#5C3A1E"/><rect x="4" y="4" width="192" height="6" rx="2" fill="#5C3A1E"/>
+  <rect x="4" y="10" width="6" height="188" fill="#c9b99a"/><rect x="190" y="10" width="6" height="188" fill="#c9b99a"/>
+  <rect x="58" y="10" width="4" height="188" fill="#8B5E3C"/>
+  <rect x="126" y="10" width="4" height="188" fill="#8B5E3C"/>
+  <!-- LEFT FIJO -->
+  <rect x="10" y="10" width="48" height="188" fill="#d4c4b0" opacity="0.45"/>
+  <rect x="10" y="103" width="48" height="3" fill="#8B5E3C"/>
+  <line x1="14" y1="22" x2="54" y2="22" stroke="#666" stroke-width="1.3"/><circle cx="14" cy="22" r="1.4" fill="#5C3A1E"/><circle cx="54" cy="22" r="1.4" fill="#5C3A1E"/>
+  <line x1="14" y1="115" x2="54" y2="115" stroke="#666" stroke-width="1.3"/><circle cx="14" cy="115" r="1.4" fill="#5C3A1E"/><circle cx="54" cy="115" r="1.4" fill="#5C3A1E"/>
+  <text x="34" y="60" font-size="6" fill="#5C3A1E" text-anchor="middle" font-style="italic">colgar</text>
+  <text x="34" y="155" font-size="6" fill="#5C3A1E" text-anchor="middle" font-style="italic">colgar</text>
+  <line x1="50" y1="14" x2="50" y2="194" stroke="#5C3A1E" stroke-width="0.5" stroke-dasharray="2,2"/>
+  <text x="34" y="190" font-size="4.5" fill="#5C3A1E" text-anchor="middle" font-style="italic">puerta corrediza</text>
+  <!-- MIDDLE: papelería + 5 cajas -->
+  <rect x="62" y="10" width="64" height="30" fill="#d4c4b0" opacity="0.55"/>
+  <text x="94" y="28" font-size="5.5" fill="#5C3A1E" text-anchor="middle" font-style="italic">papelería</text>
+  <rect x="62" y="40" width="64" height="3" fill="#5C3A1E"/>
+  <rect x="62" y="74" width="64" height="2" fill="#8B5E3C"/>
+  <rect x="62" y="105" width="64" height="2" fill="#8B5E3C"/>
+  <rect x="62" y="136" width="64" height="2" fill="#8B5E3C"/>
+  <rect x="62" y="167" width="64" height="2" fill="#8B5E3C"/>
+  <rect x="65" y="44" width="58" height="29" fill="#1a2540" stroke="#0d1530"/>
+  <rect x="65" y="77" width="58" height="27" fill="#1a2540" stroke="#0d1530"/>
+  <rect x="65" y="108" width="58" height="27" fill="#1a2540" stroke="#0d1530"/>
+  <rect x="65" y="139" width="58" height="27" fill="#1a2540" stroke="#0d1530"/>
+  <rect x="65" y="169" width="58" height="28" fill="#1a2540" stroke="#0d1530"/>
+  <!-- RIGHT: papelería + 80×120 ARRIBA + 80×90 cajas ABAJO -->
+  <rect x="130" y="10" width="60" height="30" fill="#d4c4b0" opacity="0.55"/>
+  <text x="160" y="28" font-size="5.5" fill="#5C3A1E" text-anchor="middle" font-style="italic">papelería</text>
+  <rect x="130" y="40" width="60" height="3" fill="#5C3A1E"/>
+  <rect x="130" y="43" width="60" height="88" fill="#fff" stroke="#1565c0" stroke-dasharray="3,2" stroke-width="1.5"/>
+  <text x="160" y="83" font-size="7" fill="#1565c0" text-anchor="middle" font-weight="bold">80×120</text>
+  <text x="160" y="94" font-size="6" fill="#1565c0" text-anchor="middle">libre</text>
+  <rect x="130" y="131" width="60" height="3" fill="#5C3A1E"/>
+  <rect x="130" y="155" width="60" height="2" fill="#8B5E3C"/>
+  <rect x="130" y="177" width="60" height="2" fill="#8B5E3C"/>
+  <rect x="133" y="135" width="54" height="19" fill="#1a2540" stroke="#0d1530"/>
+  <rect x="133" y="157" width="54" height="19" fill="#1a2540" stroke="#0d1530"/>
+  <rect x="133" y="179" width="54" height="18" fill="#1a2540" stroke="#0d1530"/>
+</svg></div></div>
+
+<!-- OPT 3 — Centro entrepaños libres -->
+<div class="opt-card"><div class="opt-card-hdr b"><div class="n">03</div><div class="ttl">Centro Entrepaños · Hueco Abajo</div><div class="sp">Versátil para varios artículos · 3 cajas</div></div>
+<div class="opt-svg"><svg width="180" height="188" viewBox="0 0 200 208" xmlns="http://www.w3.org/2000/svg">
+  <rect x="4" y="4" width="192" height="200" rx="3" fill="#e8ddd0" stroke="#5C3A1E" stroke-width="3"/>
+  <rect x="4" y="198" width="192" height="6" rx="2" fill="#5C3A1E"/><rect x="4" y="4" width="192" height="6" rx="2" fill="#5C3A1E"/>
+  <rect x="4" y="10" width="6" height="188" fill="#c9b99a"/><rect x="190" y="10" width="6" height="188" fill="#c9b99a"/>
+  <rect x="58" y="10" width="4" height="188" fill="#8B5E3C"/>
+  <rect x="126" y="10" width="4" height="188" fill="#8B5E3C"/>
+  <!-- LEFT FIJO -->
+  <rect x="10" y="10" width="48" height="188" fill="#d4c4b0" opacity="0.45"/>
+  <rect x="10" y="103" width="48" height="3" fill="#8B5E3C"/>
+  <line x1="14" y1="22" x2="54" y2="22" stroke="#666" stroke-width="1.3"/><circle cx="14" cy="22" r="1.4" fill="#5C3A1E"/><circle cx="54" cy="22" r="1.4" fill="#5C3A1E"/>
+  <line x1="14" y1="115" x2="54" y2="115" stroke="#666" stroke-width="1.3"/><circle cx="14" cy="115" r="1.4" fill="#5C3A1E"/><circle cx="54" cy="115" r="1.4" fill="#5C3A1E"/>
+  <text x="34" y="60" font-size="6" fill="#5C3A1E" text-anchor="middle" font-style="italic">colgar</text>
+  <text x="34" y="155" font-size="6" fill="#5C3A1E" text-anchor="middle" font-style="italic">colgar</text>
+  <line x1="50" y1="14" x2="50" y2="194" stroke="#5C3A1E" stroke-width="0.5" stroke-dasharray="2,2"/>
+  <text x="34" y="190" font-size="4.5" fill="#5C3A1E" text-anchor="middle" font-style="italic">puerta corrediza</text>
+  <!-- MIDDLE: papelería + 5 entrepaños VACÍOS -->
+  <rect x="62" y="10" width="64" height="30" fill="#d4c4b0" opacity="0.55"/>
+  <text x="94" y="28" font-size="5.5" fill="#5C3A1E" text-anchor="middle" font-style="italic">papelería</text>
+  <rect x="62" y="40" width="64" height="3" fill="#5C3A1E"/>
+  <rect x="62" y="74" width="64" height="2" fill="#8B5E3C"/>
+  <rect x="62" y="105" width="64" height="2" fill="#8B5E3C"/>
+  <rect x="62" y="136" width="64" height="2" fill="#8B5E3C"/>
+  <rect x="62" y="167" width="64" height="2" fill="#8B5E3C"/>
+  <text x="94" y="62" font-size="5" fill="#8B5E3C" text-anchor="middle" font-style="italic">entrepaño</text>
+  <text x="94" y="93" font-size="5" fill="#8B5E3C" text-anchor="middle" font-style="italic">entrepaño</text>
+  <text x="94" y="124" font-size="5" fill="#8B5E3C" text-anchor="middle" font-style="italic">entrepaño</text>
+  <text x="94" y="155" font-size="5" fill="#8B5E3C" text-anchor="middle" font-style="italic">entrepaño</text>
+  <text x="94" y="186" font-size="5" fill="#8B5E3C" text-anchor="middle" font-style="italic">entrepaño</text>
+  <!-- RIGHT: papelería + 80×90 cajas (3) arriba + 80×120 libre abajo -->
+  <rect x="130" y="10" width="60" height="30" fill="#d4c4b0" opacity="0.55"/>
+  <text x="160" y="28" font-size="5.5" fill="#5C3A1E" text-anchor="middle" font-style="italic">papelería</text>
+  <rect x="130" y="40" width="60" height="3" fill="#5C3A1E"/>
+  <rect x="130" y="64" width="60" height="2" fill="#8B5E3C"/>
+  <rect x="130" y="86" width="60" height="2" fill="#8B5E3C"/>
+  <rect x="133" y="44" width="54" height="20" fill="#1a2540" stroke="#0d1530"/>
+  <rect x="133" y="66" width="54" height="20" fill="#1a2540" stroke="#0d1530"/>
+  <rect x="133" y="88" width="54" height="20" fill="#1a2540" stroke="#0d1530"/>
+  <rect x="130" y="108" width="60" height="3" fill="#5C3A1E"/>
+  <rect x="130" y="111" width="60" height="87" fill="#fff" stroke="#1565c0" stroke-dasharray="3,2" stroke-width="1.5"/>
+  <text x="160" y="150" font-size="7" fill="#1565c0" text-anchor="middle" font-weight="bold">80×120</text>
+  <text x="160" y="161" font-size="6" fill="#1565c0" text-anchor="middle">libre</text>
+</svg></div></div>
+
+<!-- OPT 4 — Centro abierto con agarraderas -->
+<div class="opt-card"><div class="opt-card-hdr o"><div class="n">04</div><div class="ttl">Centro Abierto · Agarraderas</div><div class="sp">Para mover caja grande · 3 cajas</div></div>
+<div class="opt-svg"><svg width="180" height="188" viewBox="0 0 200 208" xmlns="http://www.w3.org/2000/svg">
+  <rect x="4" y="4" width="192" height="200" rx="3" fill="#e8ddd0" stroke="#5C3A1E" stroke-width="3"/>
+  <rect x="4" y="198" width="192" height="6" rx="2" fill="#5C3A1E"/><rect x="4" y="4" width="192" height="6" rx="2" fill="#5C3A1E"/>
+  <rect x="4" y="10" width="6" height="188" fill="#c9b99a"/><rect x="190" y="10" width="6" height="188" fill="#c9b99a"/>
+  <rect x="58" y="10" width="4" height="188" fill="#8B5E3C"/>
+  <rect x="126" y="10" width="4" height="188" fill="#8B5E3C"/>
+  <!-- LEFT FIJO -->
+  <rect x="10" y="10" width="48" height="188" fill="#d4c4b0" opacity="0.45"/>
+  <rect x="10" y="103" width="48" height="3" fill="#8B5E3C"/>
+  <line x1="14" y1="22" x2="54" y2="22" stroke="#666" stroke-width="1.3"/><circle cx="14" cy="22" r="1.4" fill="#5C3A1E"/><circle cx="54" cy="22" r="1.4" fill="#5C3A1E"/>
+  <line x1="14" y1="115" x2="54" y2="115" stroke="#666" stroke-width="1.3"/><circle cx="14" cy="115" r="1.4" fill="#5C3A1E"/><circle cx="54" cy="115" r="1.4" fill="#5C3A1E"/>
+  <text x="34" y="60" font-size="6" fill="#5C3A1E" text-anchor="middle" font-style="italic">colgar</text>
+  <text x="34" y="155" font-size="6" fill="#5C3A1E" text-anchor="middle" font-style="italic">colgar</text>
+  <line x1="50" y1="14" x2="50" y2="194" stroke="#5C3A1E" stroke-width="0.5" stroke-dasharray="2,2"/>
+  <text x="34" y="190" font-size="4.5" fill="#5C3A1E" text-anchor="middle" font-style="italic">puerta corrediza</text>
+  <!-- MIDDLE: papelería + abierto con agarraderas en los lados -->
+  <rect x="62" y="10" width="64" height="30" fill="#d4c4b0" opacity="0.55"/>
+  <text x="94" y="28" font-size="5.5" fill="#5C3A1E" text-anchor="middle" font-style="italic">papelería</text>
+  <rect x="62" y="40" width="64" height="3" fill="#5C3A1E"/>
+  <!-- agarraderas laterales (4 marcas en cada lado) -->
+  <rect x="64" y="65" width="3" height="10" fill="#8B5E3C"/>
+  <rect x="64" y="105" width="3" height="10" fill="#8B5E3C"/>
+  <rect x="64" y="145" width="3" height="10" fill="#8B5E3C"/>
+  <rect x="121" y="65" width="3" height="10" fill="#8B5E3C"/>
+  <rect x="121" y="105" width="3" height="10" fill="#8B5E3C"/>
+  <rect x="121" y="145" width="3" height="10" fill="#8B5E3C"/>
+  <text x="94" y="100" font-size="5.5" fill="#8B5E3C" text-anchor="middle" font-style="italic">abierto</text>
+  <text x="94" y="112" font-size="5" fill="#8B5E3C" text-anchor="middle" font-style="italic">+ agarraderas</text>
+  <text x="94" y="124" font-size="5" fill="#8B5E3C" text-anchor="middle" font-style="italic">laterales</text>
+  <text x="94" y="170" font-size="4.5" fill="#8B5E3C" text-anchor="middle" font-style="italic">para mover</text>
+  <text x="94" y="180" font-size="4.5" fill="#8B5E3C" text-anchor="middle" font-style="italic">caja grande</text>
+  <!-- RIGHT: papelería + 80×90 cajas (3) arriba + 80×120 libre abajo -->
+  <rect x="130" y="10" width="60" height="30" fill="#d4c4b0" opacity="0.55"/>
+  <text x="160" y="28" font-size="5.5" fill="#5C3A1E" text-anchor="middle" font-style="italic">papelería</text>
+  <rect x="130" y="40" width="60" height="3" fill="#5C3A1E"/>
+  <rect x="130" y="64" width="60" height="2" fill="#8B5E3C"/>
+  <rect x="130" y="86" width="60" height="2" fill="#8B5E3C"/>
+  <rect x="133" y="44" width="54" height="20" fill="#1a2540" stroke="#0d1530"/>
+  <rect x="133" y="66" width="54" height="20" fill="#1a2540" stroke="#0d1530"/>
+  <rect x="133" y="88" width="54" height="20" fill="#1a2540" stroke="#0d1530"/>
+  <rect x="130" y="108" width="60" height="3" fill="#5C3A1E"/>
+  <rect x="130" y="111" width="60" height="87" fill="#fff" stroke="#1565c0" stroke-dasharray="3,2" stroke-width="1.5"/>
+  <text x="160" y="150" font-size="7" fill="#1565c0" text-anchor="middle" font-weight="bold">80×120</text>
+  <text x="160" y="161" font-size="6" fill="#1565c0" text-anchor="middle">libre</text>
+</svg></div></div>
+
+<!-- OPT 5 — Centro entrepaños · Hueco arriba D. -->
+<div class="opt-card"><div class="opt-card-hdr b"><div class="n">05</div><div class="ttl">Centro Entrepaños · Hueco Arriba D.</div><div class="sp">Acceso ergonómico al hueco · 3 cajas</div></div>
+<div class="opt-svg"><svg width="180" height="188" viewBox="0 0 200 208" xmlns="http://www.w3.org/2000/svg">
+  <rect x="4" y="4" width="192" height="200" rx="3" fill="#e8ddd0" stroke="#5C3A1E" stroke-width="3"/>
+  <rect x="4" y="198" width="192" height="6" rx="2" fill="#5C3A1E"/><rect x="4" y="4" width="192" height="6" rx="2" fill="#5C3A1E"/>
+  <rect x="4" y="10" width="6" height="188" fill="#c9b99a"/><rect x="190" y="10" width="6" height="188" fill="#c9b99a"/>
+  <rect x="58" y="10" width="4" height="188" fill="#8B5E3C"/>
+  <rect x="126" y="10" width="4" height="188" fill="#8B5E3C"/>
+  <!-- LEFT FIJO -->
+  <rect x="10" y="10" width="48" height="188" fill="#d4c4b0" opacity="0.45"/>
+  <rect x="10" y="103" width="48" height="3" fill="#8B5E3C"/>
+  <line x1="14" y1="22" x2="54" y2="22" stroke="#666" stroke-width="1.3"/><circle cx="14" cy="22" r="1.4" fill="#5C3A1E"/><circle cx="54" cy="22" r="1.4" fill="#5C3A1E"/>
+  <line x1="14" y1="115" x2="54" y2="115" stroke="#666" stroke-width="1.3"/><circle cx="14" cy="115" r="1.4" fill="#5C3A1E"/><circle cx="54" cy="115" r="1.4" fill="#5C3A1E"/>
+  <text x="34" y="60" font-size="6" fill="#5C3A1E" text-anchor="middle" font-style="italic">colgar</text>
+  <text x="34" y="155" font-size="6" fill="#5C3A1E" text-anchor="middle" font-style="italic">colgar</text>
+  <line x1="50" y1="14" x2="50" y2="194" stroke="#5C3A1E" stroke-width="0.5" stroke-dasharray="2,2"/>
+  <text x="34" y="190" font-size="4.5" fill="#5C3A1E" text-anchor="middle" font-style="italic">puerta corrediza</text>
+  <!-- MIDDLE: papelería + 5 entrepaños VACÍOS -->
+  <rect x="62" y="10" width="64" height="30" fill="#d4c4b0" opacity="0.55"/>
+  <text x="94" y="28" font-size="5.5" fill="#5C3A1E" text-anchor="middle" font-style="italic">papelería</text>
+  <rect x="62" y="40" width="64" height="3" fill="#5C3A1E"/>
+  <rect x="62" y="74" width="64" height="2" fill="#8B5E3C"/>
+  <rect x="62" y="105" width="64" height="2" fill="#8B5E3C"/>
+  <rect x="62" y="136" width="64" height="2" fill="#8B5E3C"/>
+  <rect x="62" y="167" width="64" height="2" fill="#8B5E3C"/>
+  <text x="94" y="62" font-size="5" fill="#8B5E3C" text-anchor="middle" font-style="italic">entrepaño</text>
+  <text x="94" y="93" font-size="5" fill="#8B5E3C" text-anchor="middle" font-style="italic">entrepaño</text>
+  <text x="94" y="124" font-size="5" fill="#8B5E3C" text-anchor="middle" font-style="italic">entrepaño</text>
+  <text x="94" y="155" font-size="5" fill="#8B5E3C" text-anchor="middle" font-style="italic">entrepaño</text>
+  <text x="94" y="186" font-size="5" fill="#8B5E3C" text-anchor="middle" font-style="italic">entrepaño</text>
+  <!-- RIGHT: papelería + 80×120 ARRIBA + 80×90 cajas ABAJO -->
+  <rect x="130" y="10" width="60" height="30" fill="#d4c4b0" opacity="0.55"/>
+  <text x="160" y="28" font-size="5.5" fill="#5C3A1E" text-anchor="middle" font-style="italic">papelería</text>
+  <rect x="130" y="40" width="60" height="3" fill="#5C3A1E"/>
+  <rect x="130" y="43" width="60" height="88" fill="#fff" stroke="#1565c0" stroke-dasharray="3,2" stroke-width="1.5"/>
+  <text x="160" y="83" font-size="7" fill="#1565c0" text-anchor="middle" font-weight="bold">80×120</text>
+  <text x="160" y="94" font-size="6" fill="#1565c0" text-anchor="middle">libre</text>
+  <rect x="130" y="131" width="60" height="3" fill="#5C3A1E"/>
+  <rect x="130" y="155" width="60" height="2" fill="#8B5E3C"/>
+  <rect x="130" y="177" width="60" height="2" fill="#8B5E3C"/>
+  <rect x="133" y="135" width="54" height="19" fill="#1a2540" stroke="#0d1530"/>
+  <rect x="133" y="157" width="54" height="19" fill="#1a2540" stroke="#0d1530"/>
+  <rect x="133" y="179" width="54" height="18" fill="#1a2540" stroke="#0d1530"/>
+</svg></div></div>
+
+<!-- OPT 6 — Centro 5 cajas · 80×90 entrepaños -->
+<div class="opt-card"><div class="opt-card-hdr p"><div class="n">06</div><div class="ttl">Centro 5 Cajas · 80×90 Entrepaños</div><div class="sp">Cajas concentradas al centro · 5 cajas</div></div>
+<div class="opt-svg"><svg width="180" height="188" viewBox="0 0 200 208" xmlns="http://www.w3.org/2000/svg">
+  <rect x="4" y="4" width="192" height="200" rx="3" fill="#e8ddd0" stroke="#5C3A1E" stroke-width="3"/>
+  <rect x="4" y="198" width="192" height="6" rx="2" fill="#5C3A1E"/><rect x="4" y="4" width="192" height="6" rx="2" fill="#5C3A1E"/>
+  <rect x="4" y="10" width="6" height="188" fill="#c9b99a"/><rect x="190" y="10" width="6" height="188" fill="#c9b99a"/>
+  <rect x="58" y="10" width="4" height="188" fill="#8B5E3C"/>
+  <rect x="126" y="10" width="4" height="188" fill="#8B5E3C"/>
+  <!-- LEFT FIJO -->
+  <rect x="10" y="10" width="48" height="188" fill="#d4c4b0" opacity="0.45"/>
+  <rect x="10" y="103" width="48" height="3" fill="#8B5E3C"/>
+  <line x1="14" y1="22" x2="54" y2="22" stroke="#666" stroke-width="1.3"/><circle cx="14" cy="22" r="1.4" fill="#5C3A1E"/><circle cx="54" cy="22" r="1.4" fill="#5C3A1E"/>
+  <line x1="14" y1="115" x2="54" y2="115" stroke="#666" stroke-width="1.3"/><circle cx="14" cy="115" r="1.4" fill="#5C3A1E"/><circle cx="54" cy="115" r="1.4" fill="#5C3A1E"/>
+  <text x="34" y="60" font-size="6" fill="#5C3A1E" text-anchor="middle" font-style="italic">colgar</text>
+  <text x="34" y="155" font-size="6" fill="#5C3A1E" text-anchor="middle" font-style="italic">colgar</text>
+  <line x1="50" y1="14" x2="50" y2="194" stroke="#5C3A1E" stroke-width="0.5" stroke-dasharray="2,2"/>
+  <text x="34" y="190" font-size="4.5" fill="#5C3A1E" text-anchor="middle" font-style="italic">puerta corrediza</text>
+  <!-- MIDDLE: papelería + 5 cajas -->
+  <rect x="62" y="10" width="64" height="30" fill="#d4c4b0" opacity="0.55"/>
+  <text x="94" y="28" font-size="5.5" fill="#5C3A1E" text-anchor="middle" font-style="italic">papelería</text>
+  <rect x="62" y="40" width="64" height="3" fill="#5C3A1E"/>
+  <rect x="62" y="74" width="64" height="2" fill="#8B5E3C"/>
+  <rect x="62" y="105" width="64" height="2" fill="#8B5E3C"/>
+  <rect x="62" y="136" width="64" height="2" fill="#8B5E3C"/>
+  <rect x="62" y="167" width="64" height="2" fill="#8B5E3C"/>
+  <rect x="65" y="44" width="58" height="29" fill="#1a2540" stroke="#0d1530"/>
+  <rect x="65" y="77" width="58" height="27" fill="#1a2540" stroke="#0d1530"/>
+  <rect x="65" y="108" width="58" height="27" fill="#1a2540" stroke="#0d1530"/>
+  <rect x="65" y="139" width="58" height="27" fill="#1a2540" stroke="#0d1530"/>
+  <rect x="65" y="169" width="58" height="28" fill="#1a2540" stroke="#0d1530"/>
+  <!-- RIGHT: papelería + 80×90 entrepaños arriba + 80×120 libre abajo -->
+  <rect x="130" y="10" width="60" height="30" fill="#d4c4b0" opacity="0.55"/>
+  <text x="160" y="28" font-size="5.5" fill="#5C3A1E" text-anchor="middle" font-style="italic">papelería</text>
+  <rect x="130" y="40" width="60" height="3" fill="#5C3A1E"/>
+  <rect x="130" y="64" width="60" height="2" fill="#8B5E3C"/>
+  <rect x="130" y="86" width="60" height="2" fill="#8B5E3C"/>
+  <text x="160" y="58" font-size="5" fill="#8B5E3C" text-anchor="middle" font-style="italic">entrepaño</text>
+  <text x="160" y="80" font-size="5" fill="#8B5E3C" text-anchor="middle" font-style="italic">entrepaño</text>
+  <text x="160" y="103" font-size="5" fill="#8B5E3C" text-anchor="middle" font-style="italic">entrepaño</text>
+  <rect x="130" y="108" width="60" height="3" fill="#5C3A1E"/>
+  <rect x="130" y="111" width="60" height="87" fill="#fff" stroke="#1565c0" stroke-dasharray="3,2" stroke-width="1.5"/>
+  <text x="160" y="150" font-size="7" fill="#1565c0" text-anchor="middle" font-weight="bold">80×120</text>
+  <text x="160" y="161" font-size="6" fill="#1565c0" text-anchor="middle">libre</text>
+</svg></div></div>
+
+            </div>
+
+
+            <p style="margin-top:18px;font-size:.85em;color:var(--text-light);font-style:italic;">
+                * El conteo de cajas es estimado a partir del tamaño visualizado. La distribución final, dimensiones exactas
+                de los entrepaños y posición del hueco 80×120 se confirman con el cliente antes del corte.
+            </p>
+        </div>
+    </div>
+
+    <!-- DESGLOSE DE MATERIALES -->
+    <div class="section">
+        <div class="sec-hdr">📐 Desglose de Materiales (Modelo Básico)</div>
+        <div class="sec-body">
+            <div class="calc-box">
+                <div class="calc-row"><div><div>Tablones de pino</div><div class="note">3 tablones para estructura interna y refuerzos</div></div><strong>$1,200</strong></div>
+                <div class="calc-row"><div><div>Sistema de puerta corrediza</div><div class="note">Riel + rodamientos + jaladera estándar</div></div><strong>$900</strong></div>
+                <div class="calc-row"><div><div>Láminas 18 mm</div><div class="note">8 láminas × $1,100 c/u — paneles principales y entrepaños de carga</div></div><strong>$8,800</strong></div>
+                <div class="calc-row"><div><div>Láminas 15 mm</div><div class="note">6 láminas × $900 c/u — divisiones y entrepaños secundarios</div></div><strong>$5,400</strong></div>
+                <div class="calc-row"><div><div>Tubo (sistema de colgado)</div><div class="note">Tubo metálico para la zona de colgado lateral</div></div><strong>$1,500</strong></div>
+                <div class="calc-row sub"><strong>Subtotal materiales</strong><strong>$17,800</strong></div>
+                <div class="calc-row"><div><div>Mano de obra + acabado básico + instalación en sitio</div><div class="note">Corte, armado, ensamble, traslado, instalación nivelada</div></div><strong>$8,900</strong></div>
+                <div class="calc-row"><strong>Total Modelo Básico</strong><strong style="color:var(--orange);">$26,700</strong></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- COTIZACIÓN — 3 NIVELES -->
+    <div class="section">
+        <div class="sec-hdr">💰 Cotización — 3 Niveles</div>
+        <div class="sec-body">
+
+            <!-- Quote Tabs Resumen -->
+            <div class="quote-tabs">
+                <div class="q-tab basic">
+                    <div class="t-label">Básico</div>
+                    <div class="t-price">$26,700</div>
+                    <div class="t-sub">Materiales y acabado estándar</div>
+                </div>
+                <div class="q-tab standard">
+                    <div class="t-label">⭐ Intermedio</div>
+                    <div class="t-price">$32,500</div>
+                    <div class="t-sub">Herrajes premium + tapacanto + sellado</div>
+                </div>
+                <div class="q-tab premium">
+                    <div class="t-label">Avanzado</div>
+                    <div class="t-price">$40,500</div>
+                    <div class="t-sub">Soft-close + lacado + iluminación LED</div>
+                </div>
+            </div>
+
+            <!-- BÁSICO -->
+            <div class="tier">
+                <div class="tier-hdr basic">
+                    <div><div class="t-name">Cotización Básica</div><div style="font-size:.8em;color:#666;margin-top:3px;">Materiales según listado · Acabado estándar · Instalación en sitio incluida</div></div>
+                    <div class="t-total">$26,700</div>
+                </div>
+                <table class="mat-table"><tbody>
+                    <tr><td><div class="item-name">3 tablones de pino</div><div class="item-desc">Estructura interna y refuerzos</div></td><td>3</td><td>$1,200</td></tr>
+                    <tr><td><div class="item-name">Sistema de puerta corrediza estándar</div><div class="item-desc">Riel + rodamientos + jaladera</div></td><td>1 jgo</td><td>$900</td></tr>
+                    <tr><td><div class="item-name">8 láminas 18 mm</div><div class="item-desc">Paneles principales y entrepaños de carga</div></td><td>8</td><td>$8,800</td></tr>
+                    <tr><td><div class="item-name">6 láminas 15 mm</div><div class="item-desc">Divisiones internas y entrepaños secundarios</div></td><td>6</td><td>$5,400</td></tr>
+                    <tr><td><div class="item-name">Tubo metálico (colgado)</div><div class="item-desc">Acabado galvanizado estándar</div></td><td>1</td><td>$1,500</td></tr>
+                    <tr><td><div class="item-name">Mano de obra + acabado básico + instalación en sitio</div><div class="item-desc">Corte, armado, traslado e instalación nivelada</div></td><td>—</td><td>$8,900</td></tr>
+                </tbody></table>
+                <div class="totals-wrap">
+                    <div class="total-row sub"><span>Subtotal materiales</span><strong>$17,800</strong></div>
+                    <div class="total-row sub"><span>Mano de obra + instalación</span><strong>$8,900</strong></div>
+                    <div class="total-row grand"><span>TOTAL BÁSICO (IVA incluido)</span><span>$26,700</span></div>
+                </div>
+            </div>
+
+            <!-- INTERMEDIO -->
+            <div class="tier">
+                <div class="tier-hdr standard">
+                    <div><div class="t-name">⭐ Cotización Intermedia</div><div style="font-size:.8em;color:var(--text-light);margin-top:3px;">Herrajes premium · Tapacanto en todos los bordes · Acabado sellado · Niveladores</div></div>
+                    <div class="t-total">$32,500</div>
+                </div>
+                <table class="mat-table"><tbody>
+                    <tr><td><div class="item-name">3 tablones de pino</div></td><td>3</td><td>$1,200</td></tr>
+                    <tr><td><div class="item-name">Sistema de puerta corrediza premium</div><div class="item-desc">Rieles cromados, rodamientos reforzados, jaladera de aluminio</div></td><td>1 jgo</td><td>$2,400</td></tr>
+                    <tr><td><div class="item-name">8 láminas 18 mm</div></td><td>8</td><td>$8,800</td></tr>
+                    <tr><td><div class="item-name">6 láminas 15 mm</div></td><td>6</td><td>$5,400</td></tr>
+                    <tr><td><div class="item-name">Tubo cromado + soporte central</div><div class="item-desc">Acabado cromado resistente, evita oxidación</div></td><td>1</td><td>$1,800</td></tr>
+                    <tr><td><div class="item-name">Tapacanto termoadhesivo</div><div class="item-desc">Aplicado en todos los bordes expuestos del mueble</div></td><td>1 rollo</td><td>$700</td></tr>
+                    <tr><td><div class="item-name">Niveladores ajustables + taquetes y tornillos de pared</div></td><td>1 jgo</td><td>$300</td></tr>
+                    <tr><td><div class="item-name">Mano de obra + acabado sellado + instalación nivelada</div><div class="item-desc">Lijado fino, sellador para humedad, ajuste de puerta</div></td><td>—</td><td>$11,900</td></tr>
+                </tbody></table>
+                <div class="totals-wrap">
+                    <div class="total-row sub"><span>Subtotal materiales</span><strong>$20,600</strong></div>
+                    <div class="total-row sub"><span>Mano de obra + instalación</span><strong>$11,900</strong></div>
+                    <div class="total-row grand"><span>TOTAL INTERMEDIO (IVA incluido)</span><span>$32,500</span></div>
+                </div>
+            </div>
+
+            <!-- AVANZADO -->
+            <div class="tier">
+                <div class="tier-hdr premium">
+                    <div><div class="t-name">Cotización Avanzada</div><div style="font-size:.8em;opacity:.85;margin-top:3px;">Soft-close · Acabado lacado · Iluminación LED interna · Garantía extendida</div></div>
+                    <div class="t-total">$40,500</div>
+                </div>
+                <table class="mat-table"><tbody>
+                    <tr><td><div class="item-name">3 tablones de pino</div></td><td>3</td><td>$1,200</td></tr>
+                    <tr><td><div class="item-name">Sistema de puerta corrediza Soft-Close</div><div class="item-desc">Cierre amortiguado, rieles de aluminio, rodamientos premium</div></td><td>1 jgo</td><td>$3,800</td></tr>
+                    <tr><td><div class="item-name">8 láminas 18 mm alta densidad</div><div class="item-desc">Mayor resistencia mecánica y menor deformación</div></td><td>8</td><td>$11,200</td></tr>
+                    <tr><td><div class="item-name">6 láminas 15 mm alta densidad</div></td><td>6</td><td>$6,600</td></tr>
+                    <tr><td><div class="item-name">Tubos premium + soportes ocultos</div></td><td>1 jgo</td><td>$2,200</td></tr>
+                    <tr><td><div class="item-name">Tapacanto + sellado completo de todos los cantos</div></td><td>2 rollos</td><td>$1,200</td></tr>
+                    <tr><td><div class="item-name">Iluminación LED interna con sensor de apertura</div><div class="item-desc">Tira LED en zonas principales, encendido automático</div></td><td>1 jgo</td><td>$1,800</td></tr>
+                    <tr><td><div class="item-name">Niveladores premium + anclaje a pared</div></td><td>1 jgo</td><td>$500</td></tr>
+                    <tr><td><div class="item-name">Mano de obra premium + acabado lacado + instalación + entrega y garantía 2 años</div><div class="item-desc">Acabado lacado o con sellador UV, ajuste fino, entrega y garantía extendida</div></td><td>—</td><td>$12,000</td></tr>
+                </tbody></table>
+                <div class="totals-wrap">
+                    <div class="total-row sub"><span>Subtotal materiales</span><strong>$28,500</strong></div>
+                    <div class="total-row sub"><span>Mano de obra + instalación + garantía</span><strong>$12,000</strong></div>
+                    <div class="total-row grand"><span>TOTAL AVANZADO (IVA incluido)</span><span>$40,500</span></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- NOTAS -->
+    <div class="section">
+        <div class="sec-hdr">📋 Términos y Condiciones</div>
+        <div class="sec-body">
+            <ul class="notes-list">
+                <li>Se requiere anticipo del <strong>50%</strong> para iniciar el proyecto.</li>
+                <li>Tiempo estimado de entrega: <strong>10 a 18 días hábiles</strong> a partir del anticipo (almacén de mayor escala que un closet).</li>
+                <li>El espacio libre obligatorio de <strong>80 × 120 cm</strong> se confirma en posición y orientación con el cliente antes del corte.</li>
+                <li>La distribución interior (cantidad de entrepaños y posición de divisores) se confirma eligiendo una de las opciones mostradas arriba o combinando elementos de varias.</li>
+                <li>Los precios incluyen materiales, mano de obra, traslado e instalación en sitio dentro del área metropolitana. Traslados foráneos se cotizan aparte.</li>
+                <li>Esta cotización tiene vigencia de <strong>15 días</strong> a partir de la fecha de emisión. Los precios pueden variar si hay cambios en el diseño o materiales.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="sig">Ing. Alexandre Odin Cárdenas Medina</div>
+        <div>Carpintería &amp; Diseño en Madera</div>
+        <p style="margin-top:12px;font-size:.78em;color:#aaa;">COT-2026-003 · ViperPadel Almacén 240×250 cm · Abril 2026</p>
+    </div>
+
+</div>
+</body>
+</html>
