@@ -149,332 +149,103 @@
         </div>
     </div>
 
-    <!-- OPCIONES DE DISTRIBUCIÓN -->
+
+    <!-- DISEÑO DEL MUEBLE -->
     <div class="section">
-        <div class="sec-hdr">📦 Opciones de Distribución</div>
+        <div class="sec-hdr">📐 Diseño del Mueble</div>
         <div class="sec-body">
-            <p style="font-size:.9em;color:var(--text-light);margin-bottom:14px;">
-                <strong>Restricciones del diseño (según modelo SolidWorks):</strong><br>
-                • <strong>Columna izquierda</strong> (zona de colgado con puerta corrediza) — fija, no cambia entre opciones.<br>
-                • <strong>Columnas central y derecha</strong> — altura máxima de uso 2.10 m (los 40 cm superiores quedan como zona de papelería).<br>
-                • <strong>Columna derecha</strong> contiene siempre 2 sub-módulos: uno libre de <strong>80 × 120 cm</strong> (obligatorio) y otro de <strong>80 × 90 cm</strong> (con cajas o entrepaños).<br>
-                • <strong>Columna central</strong> es la que más varía: puede ir con cajas, con entrepaños libres, o abierta con agarraderas laterales para mover una caja grande.
+            <p style="font-size:.9em;color:var(--text-light);margin-bottom:18px;">
+                Distribución final acordada con el cliente. El mueble cuenta con 3 zonas claramente diferenciadas:
+                <strong>columna izquierda</strong> con puerta corrediza para colgar (2 niveles),
+                <strong>columna central</strong> con 5 entrepaños para cajas de almacén, y
+                <strong>columna derecha</strong> con 3 entrepaños superiores y un espacio libre obligatorio de
+                <strong>80 × 120 cm</strong> en la parte inferior para cajas grandes.
             </p>
-            <div class="legend">
-                <div class="item"><span class="sw" style="background:#1a2540;"></span> Caja de almacén (cliente)</div>
-                <div class="item"><span class="sw" style="background:#fff;"></span> Espacio libre 80×120</div>
-                <div class="item"><span class="sw" style="background:#d4c4b0;opacity:.55;"></span> Zona papelería / colgar</div>
+
+            <div style="display:flex;justify-content:center;align-items:flex-start;gap:30px;flex-wrap:wrap;">
+                <!-- SVG GRANDE -->
+                <div style="flex:0 0 auto;">
+                <svg width="380" height="395" viewBox="0 0 200 208" xmlns="http://www.w3.org/2000/svg" style="background:#fbf6ee;border:2px solid var(--wood-light);border-radius:8px;box-shadow:0 6px 18px rgba(92,58,30,.12);">
+                  <!-- cabinet outline -->
+                  <rect x="4" y="4" width="192" height="200" rx="3" fill="#e8ddd0" stroke="#5C3A1E" stroke-width="3"/>
+                  <rect x="4" y="198" width="192" height="6" rx="2" fill="#5C3A1E"/>
+                  <rect x="4" y="4" width="192" height="6" rx="2" fill="#5C3A1E"/>
+                  <rect x="4" y="10" width="6" height="188" fill="#c9b99a"/>
+                  <rect x="190" y="10" width="6" height="188" fill="#c9b99a"/>
+                  <!-- vertical dividers -->
+                  <rect x="58" y="10" width="4" height="188" fill="#8B5E3C"/>
+                  <rect x="126" y="10" width="4" height="188" fill="#8B5E3C"/>
+
+                  <!-- LEFT: hanging closet with sliding door -->
+                  <rect x="10" y="10" width="48" height="188" fill="#d4c4b0" opacity="0.45"/>
+                  <rect x="10" y="103" width="48" height="3" fill="#8B5E3C"/>
+                  <line x1="14" y1="22" x2="54" y2="22" stroke="#666" stroke-width="1.4"/>
+                  <circle cx="14" cy="22" r="1.6" fill="#5C3A1E"/><circle cx="54" cy="22" r="1.6" fill="#5C3A1E"/>
+                  <line x1="14" y1="115" x2="54" y2="115" stroke="#666" stroke-width="1.4"/>
+                  <circle cx="14" cy="115" r="1.6" fill="#5C3A1E"/><circle cx="54" cy="115" r="1.6" fill="#5C3A1E"/>
+                  <text x="34" y="62" font-size="5.5" fill="#5C3A1E" text-anchor="middle" font-style="italic" font-weight="600">colgar</text>
+                  <text x="34" y="155" font-size="5.5" fill="#5C3A1E" text-anchor="middle" font-style="italic" font-weight="600">colgar</text>
+                  <line x1="50" y1="14" x2="50" y2="194" stroke="#5C3A1E" stroke-width="0.5" stroke-dasharray="2,2"/>
+                  <text x="34" y="190" font-size="3.8" fill="#5C3A1E" text-anchor="middle" font-style="italic">puerta corrediza</text>
+
+                  <!-- MIDDLE: papelería + 5 cajas -->
+                  <rect x="62" y="10" width="64" height="30" fill="#d4c4b0" opacity="0.55"/>
+                  <text x="94" y="28" font-size="5" fill="#5C3A1E" text-anchor="middle" font-style="italic">papelería</text>
+                  <rect x="62" y="40" width="64" height="3" fill="#5C3A1E"/>
+                  <rect x="62" y="74" width="64" height="2" fill="#8B5E3C"/>
+                  <rect x="62" y="105" width="64" height="2" fill="#8B5E3C"/>
+                  <rect x="62" y="136" width="64" height="2" fill="#8B5E3C"/>
+                  <rect x="62" y="167" width="64" height="2" fill="#8B5E3C"/>
+                  <rect x="65" y="44" width="58" height="29" fill="#1a2540" stroke="#0d1530"/>
+                  <rect x="65" y="77" width="58" height="27" fill="#1a2540" stroke="#0d1530"/>
+                  <rect x="65" y="108" width="58" height="27" fill="#1a2540" stroke="#0d1530"/>
+                  <rect x="65" y="139" width="58" height="27" fill="#1a2540" stroke="#0d1530"/>
+                  <rect x="65" y="169" width="58" height="28" fill="#1a2540" stroke="#0d1530"/>
+
+                  <!-- RIGHT: papelería + 3 entrepaños arriba + 80×120 libre abajo -->
+                  <rect x="130" y="10" width="60" height="30" fill="#d4c4b0" opacity="0.55"/>
+                  <text x="160" y="28" font-size="5" fill="#5C3A1E" text-anchor="middle" font-style="italic">papelería</text>
+                  <rect x="130" y="40" width="60" height="3" fill="#5C3A1E"/>
+                  <rect x="130" y="64" width="60" height="2" fill="#8B5E3C"/>
+                  <rect x="130" y="86" width="60" height="2" fill="#8B5E3C"/>
+                  <text x="160" y="58" font-size="4.5" fill="#8B5E3C" text-anchor="middle" font-style="italic">entrepaño</text>
+                  <text x="160" y="80" font-size="4.5" fill="#8B5E3C" text-anchor="middle" font-style="italic">entrepaño</text>
+                  <text x="160" y="103" font-size="4.5" fill="#8B5E3C" text-anchor="middle" font-style="italic">entrepaño</text>
+                  <rect x="130" y="108" width="60" height="3" fill="#5C3A1E"/>
+                  <rect x="130" y="111" width="60" height="87" fill="#fff" stroke="#1565c0" stroke-dasharray="3,2" stroke-width="1.5"/>
+                  <text x="160" y="150" font-size="6.5" fill="#1565c0" text-anchor="middle" font-weight="bold">80 × 120 cm</text>
+                  <text x="160" y="160" font-size="5" fill="#1565c0" text-anchor="middle">espacio libre</text>
+
+                  <!-- ANCHOS arriba -->
+                  <text x="34" y="9" font-size="4" fill="#5C3A1E" text-anchor="middle">~60 cm</text>
+                  <text x="94" y="9" font-size="4" fill="#5C3A1E" text-anchor="middle">~80 cm</text>
+                  <text x="160" y="9" font-size="4" fill="#5C3A1E" text-anchor="middle">~80 cm</text>
+                </svg>
+                <div style="text-align:center;font-size:.82em;color:var(--text-light);margin-top:8px;font-style:italic;">Vista frontal · Mueble 240 × 250 cm</div>
+                </div>
+
+                <!-- LEYENDA + DETALLES al lado -->
+                <div style="flex:1;min-width:240px;font-size:.9em;">
+                    <div style="background:#f9f4ee;border:1px solid var(--border);border-radius:8px;padding:14px 18px;margin-bottom:14px;">
+                        <div style="font-family:'Playfair Display',serif;font-size:1em;color:var(--wood-dark);margin-bottom:10px;">Leyenda</div>
+                        <div style="display:flex;align-items:center;gap:10px;margin-bottom:7px;"><span style="display:inline-block;width:22px;height:14px;background:#1a2540;border:1px solid #0d1530;border-radius:2px;"></span><span>Caja de almacén del cliente</span></div>
+                        <div style="display:flex;align-items:center;gap:10px;margin-bottom:7px;"><span style="display:inline-block;width:22px;height:14px;background:#fff;border:1px dashed #1565c0;border-radius:2px;"></span><span>Espacio libre 80 × 120 cm</span></div>
+                        <div style="display:flex;align-items:center;gap:10px;margin-bottom:7px;"><span style="display:inline-block;width:22px;height:14px;background:#d4c4b0;opacity:.55;border:1px solid var(--border);border-radius:2px;"></span><span>Zona de papelería / colgar</span></div>
+                        <div style="display:flex;align-items:center;gap:10px;"><span style="display:inline-block;width:22px;height:14px;border-bottom:2px solid #8B5E3C;border-radius:2px;"></span><span>Entrepaño / divisor</span></div>
+                    </div>
+
+                    <div style="background:#f9f4ee;border:1px solid var(--border);border-radius:8px;padding:14px 18px;">
+                        <div style="font-family:'Playfair Display',serif;font-size:1em;color:var(--wood-dark);margin-bottom:10px;">Capacidad</div>
+                        <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed var(--border);"><span>Cajas de almacén</span><strong style="color:var(--wood-dark);">5 cajas</strong></div>
+                        <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed var(--border);"><span>Entrepaños libres</span><strong style="color:var(--wood-dark);">3 niveles</strong></div>
+                        <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed var(--border);"><span>Zona de colgado</span><strong style="color:var(--wood-dark);">2 niveles</strong></div>
+                        <div style="display:flex;justify-content:space-between;padding:5px 0;"><span>Espacio libre</span><strong style="color:var(--orange);">80 × 120 cm</strong></div>
+                    </div>
+                </div>
             </div>
 
-            <div class="grid3">
-
-<!-- ============================================================
-     Sistema de coordenadas SVG (todas las opciones)
-     viewBox: 200 × 208  (representa 240 cm × 250 cm)
-     escala: ~0.78 px/cm
-     Cabinet outer: x=4..196, y=4..204
-     Inner area:    x=10..190, y=10..198 (180×188 px)
-
-     COLUMNAS:
-     · LEFT  (colgado fijo): x=10..58  (48 px ≈ 60 cm)
-     · DIV1: x=58..62 (4 px)
-     · MID                 : x=62..126 (64 px ≈ 80 cm)
-     · DIV2: x=126..130 (4 px)
-     · RIGHT               : x=130..190 (60 px ≈ 75 cm)
-
-     ALTURAS (MID y RIGHT):
-     · Papelería arriba: y=10..40 (30 px ≈ 40 cm)
-     · Divisor:          y=40..43
-     · Zona útil:        y=43..198 (155 px ≈ 210 cm máx)
-     · 80×120 = 88 px,  80×90 = 64 px (≈ 152 px + 3 px divisor)
-
-     LEFT (colgado, FIJO):
-     · 2 niveles · divisor a y=104
-     · Puerta corrediza indicada con líneas verticales
-     ============================================================ -->
-
-<!-- OPT 1 — BASE (referencia SolidWorks) -->
-<div class="opt-card"><div class="opt-card-hdr g"><div class="n">01 · BASE</div><div class="ttl">Centro 5 Cajas · Hueco Abajo D.</div><div class="sp">Distribución del SolidWorks · 8 cajas</div></div>
-<div class="opt-svg"><svg width="180" height="188" viewBox="0 0 200 208" xmlns="http://www.w3.org/2000/svg">
-  <rect x="4" y="4" width="192" height="200" rx="3" fill="#e8ddd0" stroke="#5C3A1E" stroke-width="3"/>
-  <rect x="4" y="198" width="192" height="6" rx="2" fill="#5C3A1E"/><rect x="4" y="4" width="192" height="6" rx="2" fill="#5C3A1E"/>
-  <rect x="4" y="10" width="6" height="188" fill="#c9b99a"/><rect x="190" y="10" width="6" height="188" fill="#c9b99a"/>
-  <rect x="58" y="10" width="4" height="188" fill="#8B5E3C"/>
-  <rect x="126" y="10" width="4" height="188" fill="#8B5E3C"/>
-  <!-- LEFT: hanging closet with door -->
-  <rect x="10" y="10" width="48" height="188" fill="#d4c4b0" opacity="0.45"/>
-  <rect x="10" y="103" width="48" height="3" fill="#8B5E3C"/>
-  <line x1="14" y1="22" x2="54" y2="22" stroke="#666" stroke-width="1.3"/><circle cx="14" cy="22" r="1.4" fill="#5C3A1E"/><circle cx="54" cy="22" r="1.4" fill="#5C3A1E"/>
-  <line x1="14" y1="115" x2="54" y2="115" stroke="#666" stroke-width="1.3"/><circle cx="14" cy="115" r="1.4" fill="#5C3A1E"/><circle cx="54" cy="115" r="1.4" fill="#5C3A1E"/>
-  <text x="34" y="60" font-size="6" fill="#5C3A1E" text-anchor="middle" font-style="italic">colgar</text>
-  <text x="34" y="155" font-size="6" fill="#5C3A1E" text-anchor="middle" font-style="italic">colgar</text>
-  <line x1="50" y1="14" x2="50" y2="194" stroke="#5C3A1E" stroke-width="0.5" stroke-dasharray="2,2"/>
-  <text x="34" y="190" font-size="4.5" fill="#5C3A1E" text-anchor="middle" font-style="italic">puerta corrediza</text>
-  <!-- MIDDLE: papelería + 5 cajas -->
-  <rect x="62" y="10" width="64" height="30" fill="#d4c4b0" opacity="0.55"/>
-  <text x="94" y="28" font-size="5.5" fill="#5C3A1E" text-anchor="middle" font-style="italic">papelería</text>
-  <rect x="62" y="40" width="64" height="3" fill="#5C3A1E"/>
-  <rect x="62" y="74" width="64" height="2" fill="#8B5E3C"/>
-  <rect x="62" y="105" width="64" height="2" fill="#8B5E3C"/>
-  <rect x="62" y="136" width="64" height="2" fill="#8B5E3C"/>
-  <rect x="62" y="167" width="64" height="2" fill="#8B5E3C"/>
-  <rect x="65" y="44" width="58" height="29" fill="#1a2540" stroke="#0d1530"/>
-  <rect x="65" y="77" width="58" height="27" fill="#1a2540" stroke="#0d1530"/>
-  <rect x="65" y="108" width="58" height="27" fill="#1a2540" stroke="#0d1530"/>
-  <rect x="65" y="139" width="58" height="27" fill="#1a2540" stroke="#0d1530"/>
-  <rect x="65" y="169" width="58" height="28" fill="#1a2540" stroke="#0d1530"/>
-  <!-- RIGHT: papelería + 80×90 cajas (3) arriba + 80×120 libre abajo -->
-  <rect x="130" y="10" width="60" height="30" fill="#d4c4b0" opacity="0.55"/>
-  <text x="160" y="28" font-size="5.5" fill="#5C3A1E" text-anchor="middle" font-style="italic">papelería</text>
-  <rect x="130" y="40" width="60" height="3" fill="#5C3A1E"/>
-  <!-- 80×90 con 3 cajas arriba -->
-  <rect x="130" y="64" width="60" height="2" fill="#8B5E3C"/>
-  <rect x="130" y="86" width="60" height="2" fill="#8B5E3C"/>
-  <rect x="133" y="44" width="54" height="20" fill="#1a2540" stroke="#0d1530"/>
-  <rect x="133" y="66" width="54" height="20" fill="#1a2540" stroke="#0d1530"/>
-  <rect x="133" y="88" width="54" height="20" fill="#1a2540" stroke="#0d1530"/>
-  <!-- divisor entre sub-módulos -->
-  <rect x="130" y="108" width="60" height="3" fill="#5C3A1E"/>
-  <!-- 80×120 libre abajo -->
-  <rect x="130" y="111" width="60" height="87" fill="#fff" stroke="#1565c0" stroke-dasharray="3,2" stroke-width="1.5"/>
-  <text x="160" y="150" font-size="7" fill="#1565c0" text-anchor="middle" font-weight="bold">80×120</text>
-  <text x="160" y="161" font-size="6" fill="#1565c0" text-anchor="middle">libre</text>
-</svg></div></div>
-
-<!-- OPT 2 — Hueco Arriba D. -->
-<div class="opt-card"><div class="opt-card-hdr g"><div class="n">02</div><div class="ttl">Centro 5 Cajas · Hueco Arriba D.</div><div class="sp">Caja grande accesible · 8 cajas</div></div>
-<div class="opt-svg"><svg width="180" height="188" viewBox="0 0 200 208" xmlns="http://www.w3.org/2000/svg">
-  <rect x="4" y="4" width="192" height="200" rx="3" fill="#e8ddd0" stroke="#5C3A1E" stroke-width="3"/>
-  <rect x="4" y="198" width="192" height="6" rx="2" fill="#5C3A1E"/><rect x="4" y="4" width="192" height="6" rx="2" fill="#5C3A1E"/>
-  <rect x="4" y="10" width="6" height="188" fill="#c9b99a"/><rect x="190" y="10" width="6" height="188" fill="#c9b99a"/>
-  <rect x="58" y="10" width="4" height="188" fill="#8B5E3C"/>
-  <rect x="126" y="10" width="4" height="188" fill="#8B5E3C"/>
-  <!-- LEFT FIJO -->
-  <rect x="10" y="10" width="48" height="188" fill="#d4c4b0" opacity="0.45"/>
-  <rect x="10" y="103" width="48" height="3" fill="#8B5E3C"/>
-  <line x1="14" y1="22" x2="54" y2="22" stroke="#666" stroke-width="1.3"/><circle cx="14" cy="22" r="1.4" fill="#5C3A1E"/><circle cx="54" cy="22" r="1.4" fill="#5C3A1E"/>
-  <line x1="14" y1="115" x2="54" y2="115" stroke="#666" stroke-width="1.3"/><circle cx="14" cy="115" r="1.4" fill="#5C3A1E"/><circle cx="54" cy="115" r="1.4" fill="#5C3A1E"/>
-  <text x="34" y="60" font-size="6" fill="#5C3A1E" text-anchor="middle" font-style="italic">colgar</text>
-  <text x="34" y="155" font-size="6" fill="#5C3A1E" text-anchor="middle" font-style="italic">colgar</text>
-  <line x1="50" y1="14" x2="50" y2="194" stroke="#5C3A1E" stroke-width="0.5" stroke-dasharray="2,2"/>
-  <text x="34" y="190" font-size="4.5" fill="#5C3A1E" text-anchor="middle" font-style="italic">puerta corrediza</text>
-  <!-- MIDDLE: papelería + 5 cajas -->
-  <rect x="62" y="10" width="64" height="30" fill="#d4c4b0" opacity="0.55"/>
-  <text x="94" y="28" font-size="5.5" fill="#5C3A1E" text-anchor="middle" font-style="italic">papelería</text>
-  <rect x="62" y="40" width="64" height="3" fill="#5C3A1E"/>
-  <rect x="62" y="74" width="64" height="2" fill="#8B5E3C"/>
-  <rect x="62" y="105" width="64" height="2" fill="#8B5E3C"/>
-  <rect x="62" y="136" width="64" height="2" fill="#8B5E3C"/>
-  <rect x="62" y="167" width="64" height="2" fill="#8B5E3C"/>
-  <rect x="65" y="44" width="58" height="29" fill="#1a2540" stroke="#0d1530"/>
-  <rect x="65" y="77" width="58" height="27" fill="#1a2540" stroke="#0d1530"/>
-  <rect x="65" y="108" width="58" height="27" fill="#1a2540" stroke="#0d1530"/>
-  <rect x="65" y="139" width="58" height="27" fill="#1a2540" stroke="#0d1530"/>
-  <rect x="65" y="169" width="58" height="28" fill="#1a2540" stroke="#0d1530"/>
-  <!-- RIGHT: papelería + 80×120 ARRIBA + 80×90 cajas ABAJO -->
-  <rect x="130" y="10" width="60" height="30" fill="#d4c4b0" opacity="0.55"/>
-  <text x="160" y="28" font-size="5.5" fill="#5C3A1E" text-anchor="middle" font-style="italic">papelería</text>
-  <rect x="130" y="40" width="60" height="3" fill="#5C3A1E"/>
-  <rect x="130" y="43" width="60" height="88" fill="#fff" stroke="#1565c0" stroke-dasharray="3,2" stroke-width="1.5"/>
-  <text x="160" y="83" font-size="7" fill="#1565c0" text-anchor="middle" font-weight="bold">80×120</text>
-  <text x="160" y="94" font-size="6" fill="#1565c0" text-anchor="middle">libre</text>
-  <rect x="130" y="131" width="60" height="3" fill="#5C3A1E"/>
-  <rect x="130" y="155" width="60" height="2" fill="#8B5E3C"/>
-  <rect x="130" y="177" width="60" height="2" fill="#8B5E3C"/>
-  <rect x="133" y="135" width="54" height="19" fill="#1a2540" stroke="#0d1530"/>
-  <rect x="133" y="157" width="54" height="19" fill="#1a2540" stroke="#0d1530"/>
-  <rect x="133" y="179" width="54" height="18" fill="#1a2540" stroke="#0d1530"/>
-</svg></div></div>
-
-<!-- OPT 3 — Centro entrepaños libres -->
-<div class="opt-card"><div class="opt-card-hdr b"><div class="n">03</div><div class="ttl">Centro Entrepaños · Hueco Abajo</div><div class="sp">Versátil para varios artículos · 3 cajas</div></div>
-<div class="opt-svg"><svg width="180" height="188" viewBox="0 0 200 208" xmlns="http://www.w3.org/2000/svg">
-  <rect x="4" y="4" width="192" height="200" rx="3" fill="#e8ddd0" stroke="#5C3A1E" stroke-width="3"/>
-  <rect x="4" y="198" width="192" height="6" rx="2" fill="#5C3A1E"/><rect x="4" y="4" width="192" height="6" rx="2" fill="#5C3A1E"/>
-  <rect x="4" y="10" width="6" height="188" fill="#c9b99a"/><rect x="190" y="10" width="6" height="188" fill="#c9b99a"/>
-  <rect x="58" y="10" width="4" height="188" fill="#8B5E3C"/>
-  <rect x="126" y="10" width="4" height="188" fill="#8B5E3C"/>
-  <!-- LEFT FIJO -->
-  <rect x="10" y="10" width="48" height="188" fill="#d4c4b0" opacity="0.45"/>
-  <rect x="10" y="103" width="48" height="3" fill="#8B5E3C"/>
-  <line x1="14" y1="22" x2="54" y2="22" stroke="#666" stroke-width="1.3"/><circle cx="14" cy="22" r="1.4" fill="#5C3A1E"/><circle cx="54" cy="22" r="1.4" fill="#5C3A1E"/>
-  <line x1="14" y1="115" x2="54" y2="115" stroke="#666" stroke-width="1.3"/><circle cx="14" cy="115" r="1.4" fill="#5C3A1E"/><circle cx="54" cy="115" r="1.4" fill="#5C3A1E"/>
-  <text x="34" y="60" font-size="6" fill="#5C3A1E" text-anchor="middle" font-style="italic">colgar</text>
-  <text x="34" y="155" font-size="6" fill="#5C3A1E" text-anchor="middle" font-style="italic">colgar</text>
-  <line x1="50" y1="14" x2="50" y2="194" stroke="#5C3A1E" stroke-width="0.5" stroke-dasharray="2,2"/>
-  <text x="34" y="190" font-size="4.5" fill="#5C3A1E" text-anchor="middle" font-style="italic">puerta corrediza</text>
-  <!-- MIDDLE: papelería + 5 entrepaños VACÍOS -->
-  <rect x="62" y="10" width="64" height="30" fill="#d4c4b0" opacity="0.55"/>
-  <text x="94" y="28" font-size="5.5" fill="#5C3A1E" text-anchor="middle" font-style="italic">papelería</text>
-  <rect x="62" y="40" width="64" height="3" fill="#5C3A1E"/>
-  <rect x="62" y="74" width="64" height="2" fill="#8B5E3C"/>
-  <rect x="62" y="105" width="64" height="2" fill="#8B5E3C"/>
-  <rect x="62" y="136" width="64" height="2" fill="#8B5E3C"/>
-  <rect x="62" y="167" width="64" height="2" fill="#8B5E3C"/>
-  <text x="94" y="62" font-size="5" fill="#8B5E3C" text-anchor="middle" font-style="italic">entrepaño</text>
-  <text x="94" y="93" font-size="5" fill="#8B5E3C" text-anchor="middle" font-style="italic">entrepaño</text>
-  <text x="94" y="124" font-size="5" fill="#8B5E3C" text-anchor="middle" font-style="italic">entrepaño</text>
-  <text x="94" y="155" font-size="5" fill="#8B5E3C" text-anchor="middle" font-style="italic">entrepaño</text>
-  <text x="94" y="186" font-size="5" fill="#8B5E3C" text-anchor="middle" font-style="italic">entrepaño</text>
-  <!-- RIGHT: papelería + 80×90 cajas (3) arriba + 80×120 libre abajo -->
-  <rect x="130" y="10" width="60" height="30" fill="#d4c4b0" opacity="0.55"/>
-  <text x="160" y="28" font-size="5.5" fill="#5C3A1E" text-anchor="middle" font-style="italic">papelería</text>
-  <rect x="130" y="40" width="60" height="3" fill="#5C3A1E"/>
-  <rect x="130" y="64" width="60" height="2" fill="#8B5E3C"/>
-  <rect x="130" y="86" width="60" height="2" fill="#8B5E3C"/>
-  <rect x="133" y="44" width="54" height="20" fill="#1a2540" stroke="#0d1530"/>
-  <rect x="133" y="66" width="54" height="20" fill="#1a2540" stroke="#0d1530"/>
-  <rect x="133" y="88" width="54" height="20" fill="#1a2540" stroke="#0d1530"/>
-  <rect x="130" y="108" width="60" height="3" fill="#5C3A1E"/>
-  <rect x="130" y="111" width="60" height="87" fill="#fff" stroke="#1565c0" stroke-dasharray="3,2" stroke-width="1.5"/>
-  <text x="160" y="150" font-size="7" fill="#1565c0" text-anchor="middle" font-weight="bold">80×120</text>
-  <text x="160" y="161" font-size="6" fill="#1565c0" text-anchor="middle">libre</text>
-</svg></div></div>
-
-<!-- OPT 4 — Centro abierto con agarraderas -->
-<div class="opt-card"><div class="opt-card-hdr o"><div class="n">04</div><div class="ttl">Centro Abierto · Agarraderas</div><div class="sp">Para mover caja grande · 3 cajas</div></div>
-<div class="opt-svg"><svg width="180" height="188" viewBox="0 0 200 208" xmlns="http://www.w3.org/2000/svg">
-  <rect x="4" y="4" width="192" height="200" rx="3" fill="#e8ddd0" stroke="#5C3A1E" stroke-width="3"/>
-  <rect x="4" y="198" width="192" height="6" rx="2" fill="#5C3A1E"/><rect x="4" y="4" width="192" height="6" rx="2" fill="#5C3A1E"/>
-  <rect x="4" y="10" width="6" height="188" fill="#c9b99a"/><rect x="190" y="10" width="6" height="188" fill="#c9b99a"/>
-  <rect x="58" y="10" width="4" height="188" fill="#8B5E3C"/>
-  <rect x="126" y="10" width="4" height="188" fill="#8B5E3C"/>
-  <!-- LEFT FIJO -->
-  <rect x="10" y="10" width="48" height="188" fill="#d4c4b0" opacity="0.45"/>
-  <rect x="10" y="103" width="48" height="3" fill="#8B5E3C"/>
-  <line x1="14" y1="22" x2="54" y2="22" stroke="#666" stroke-width="1.3"/><circle cx="14" cy="22" r="1.4" fill="#5C3A1E"/><circle cx="54" cy="22" r="1.4" fill="#5C3A1E"/>
-  <line x1="14" y1="115" x2="54" y2="115" stroke="#666" stroke-width="1.3"/><circle cx="14" cy="115" r="1.4" fill="#5C3A1E"/><circle cx="54" cy="115" r="1.4" fill="#5C3A1E"/>
-  <text x="34" y="60" font-size="6" fill="#5C3A1E" text-anchor="middle" font-style="italic">colgar</text>
-  <text x="34" y="155" font-size="6" fill="#5C3A1E" text-anchor="middle" font-style="italic">colgar</text>
-  <line x1="50" y1="14" x2="50" y2="194" stroke="#5C3A1E" stroke-width="0.5" stroke-dasharray="2,2"/>
-  <text x="34" y="190" font-size="4.5" fill="#5C3A1E" text-anchor="middle" font-style="italic">puerta corrediza</text>
-  <!-- MIDDLE: papelería + abierto con agarraderas en los lados -->
-  <rect x="62" y="10" width="64" height="30" fill="#d4c4b0" opacity="0.55"/>
-  <text x="94" y="28" font-size="5.5" fill="#5C3A1E" text-anchor="middle" font-style="italic">papelería</text>
-  <rect x="62" y="40" width="64" height="3" fill="#5C3A1E"/>
-  <!-- agarraderas laterales (4 marcas en cada lado) -->
-  <rect x="64" y="65" width="3" height="10" fill="#8B5E3C"/>
-  <rect x="64" y="105" width="3" height="10" fill="#8B5E3C"/>
-  <rect x="64" y="145" width="3" height="10" fill="#8B5E3C"/>
-  <rect x="121" y="65" width="3" height="10" fill="#8B5E3C"/>
-  <rect x="121" y="105" width="3" height="10" fill="#8B5E3C"/>
-  <rect x="121" y="145" width="3" height="10" fill="#8B5E3C"/>
-  <text x="94" y="100" font-size="5.5" fill="#8B5E3C" text-anchor="middle" font-style="italic">abierto</text>
-  <text x="94" y="112" font-size="5" fill="#8B5E3C" text-anchor="middle" font-style="italic">+ agarraderas</text>
-  <text x="94" y="124" font-size="5" fill="#8B5E3C" text-anchor="middle" font-style="italic">laterales</text>
-  <text x="94" y="170" font-size="4.5" fill="#8B5E3C" text-anchor="middle" font-style="italic">para mover</text>
-  <text x="94" y="180" font-size="4.5" fill="#8B5E3C" text-anchor="middle" font-style="italic">caja grande</text>
-  <!-- RIGHT: papelería + 80×90 cajas (3) arriba + 80×120 libre abajo -->
-  <rect x="130" y="10" width="60" height="30" fill="#d4c4b0" opacity="0.55"/>
-  <text x="160" y="28" font-size="5.5" fill="#5C3A1E" text-anchor="middle" font-style="italic">papelería</text>
-  <rect x="130" y="40" width="60" height="3" fill="#5C3A1E"/>
-  <rect x="130" y="64" width="60" height="2" fill="#8B5E3C"/>
-  <rect x="130" y="86" width="60" height="2" fill="#8B5E3C"/>
-  <rect x="133" y="44" width="54" height="20" fill="#1a2540" stroke="#0d1530"/>
-  <rect x="133" y="66" width="54" height="20" fill="#1a2540" stroke="#0d1530"/>
-  <rect x="133" y="88" width="54" height="20" fill="#1a2540" stroke="#0d1530"/>
-  <rect x="130" y="108" width="60" height="3" fill="#5C3A1E"/>
-  <rect x="130" y="111" width="60" height="87" fill="#fff" stroke="#1565c0" stroke-dasharray="3,2" stroke-width="1.5"/>
-  <text x="160" y="150" font-size="7" fill="#1565c0" text-anchor="middle" font-weight="bold">80×120</text>
-  <text x="160" y="161" font-size="6" fill="#1565c0" text-anchor="middle">libre</text>
-</svg></div></div>
-
-<!-- OPT 5 — Centro entrepaños · Hueco arriba D. -->
-<div class="opt-card"><div class="opt-card-hdr b"><div class="n">05</div><div class="ttl">Centro Entrepaños · Hueco Arriba D.</div><div class="sp">Acceso ergonómico al hueco · 3 cajas</div></div>
-<div class="opt-svg"><svg width="180" height="188" viewBox="0 0 200 208" xmlns="http://www.w3.org/2000/svg">
-  <rect x="4" y="4" width="192" height="200" rx="3" fill="#e8ddd0" stroke="#5C3A1E" stroke-width="3"/>
-  <rect x="4" y="198" width="192" height="6" rx="2" fill="#5C3A1E"/><rect x="4" y="4" width="192" height="6" rx="2" fill="#5C3A1E"/>
-  <rect x="4" y="10" width="6" height="188" fill="#c9b99a"/><rect x="190" y="10" width="6" height="188" fill="#c9b99a"/>
-  <rect x="58" y="10" width="4" height="188" fill="#8B5E3C"/>
-  <rect x="126" y="10" width="4" height="188" fill="#8B5E3C"/>
-  <!-- LEFT FIJO -->
-  <rect x="10" y="10" width="48" height="188" fill="#d4c4b0" opacity="0.45"/>
-  <rect x="10" y="103" width="48" height="3" fill="#8B5E3C"/>
-  <line x1="14" y1="22" x2="54" y2="22" stroke="#666" stroke-width="1.3"/><circle cx="14" cy="22" r="1.4" fill="#5C3A1E"/><circle cx="54" cy="22" r="1.4" fill="#5C3A1E"/>
-  <line x1="14" y1="115" x2="54" y2="115" stroke="#666" stroke-width="1.3"/><circle cx="14" cy="115" r="1.4" fill="#5C3A1E"/><circle cx="54" cy="115" r="1.4" fill="#5C3A1E"/>
-  <text x="34" y="60" font-size="6" fill="#5C3A1E" text-anchor="middle" font-style="italic">colgar</text>
-  <text x="34" y="155" font-size="6" fill="#5C3A1E" text-anchor="middle" font-style="italic">colgar</text>
-  <line x1="50" y1="14" x2="50" y2="194" stroke="#5C3A1E" stroke-width="0.5" stroke-dasharray="2,2"/>
-  <text x="34" y="190" font-size="4.5" fill="#5C3A1E" text-anchor="middle" font-style="italic">puerta corrediza</text>
-  <!-- MIDDLE: papelería + 5 entrepaños VACÍOS -->
-  <rect x="62" y="10" width="64" height="30" fill="#d4c4b0" opacity="0.55"/>
-  <text x="94" y="28" font-size="5.5" fill="#5C3A1E" text-anchor="middle" font-style="italic">papelería</text>
-  <rect x="62" y="40" width="64" height="3" fill="#5C3A1E"/>
-  <rect x="62" y="74" width="64" height="2" fill="#8B5E3C"/>
-  <rect x="62" y="105" width="64" height="2" fill="#8B5E3C"/>
-  <rect x="62" y="136" width="64" height="2" fill="#8B5E3C"/>
-  <rect x="62" y="167" width="64" height="2" fill="#8B5E3C"/>
-  <text x="94" y="62" font-size="5" fill="#8B5E3C" text-anchor="middle" font-style="italic">entrepaño</text>
-  <text x="94" y="93" font-size="5" fill="#8B5E3C" text-anchor="middle" font-style="italic">entrepaño</text>
-  <text x="94" y="124" font-size="5" fill="#8B5E3C" text-anchor="middle" font-style="italic">entrepaño</text>
-  <text x="94" y="155" font-size="5" fill="#8B5E3C" text-anchor="middle" font-style="italic">entrepaño</text>
-  <text x="94" y="186" font-size="5" fill="#8B5E3C" text-anchor="middle" font-style="italic">entrepaño</text>
-  <!-- RIGHT: papelería + 80×120 ARRIBA + 80×90 cajas ABAJO -->
-  <rect x="130" y="10" width="60" height="30" fill="#d4c4b0" opacity="0.55"/>
-  <text x="160" y="28" font-size="5.5" fill="#5C3A1E" text-anchor="middle" font-style="italic">papelería</text>
-  <rect x="130" y="40" width="60" height="3" fill="#5C3A1E"/>
-  <rect x="130" y="43" width="60" height="88" fill="#fff" stroke="#1565c0" stroke-dasharray="3,2" stroke-width="1.5"/>
-  <text x="160" y="83" font-size="7" fill="#1565c0" text-anchor="middle" font-weight="bold">80×120</text>
-  <text x="160" y="94" font-size="6" fill="#1565c0" text-anchor="middle">libre</text>
-  <rect x="130" y="131" width="60" height="3" fill="#5C3A1E"/>
-  <rect x="130" y="155" width="60" height="2" fill="#8B5E3C"/>
-  <rect x="130" y="177" width="60" height="2" fill="#8B5E3C"/>
-  <rect x="133" y="135" width="54" height="19" fill="#1a2540" stroke="#0d1530"/>
-  <rect x="133" y="157" width="54" height="19" fill="#1a2540" stroke="#0d1530"/>
-  <rect x="133" y="179" width="54" height="18" fill="#1a2540" stroke="#0d1530"/>
-</svg></div></div>
-
-<!-- OPT 6 — Centro 5 cajas · 80×90 entrepaños -->
-<div class="opt-card"><div class="opt-card-hdr p"><div class="n">06</div><div class="ttl">Centro 5 Cajas · 80×90 Entrepaños</div><div class="sp">Cajas concentradas al centro · 5 cajas</div></div>
-<div class="opt-svg"><svg width="180" height="188" viewBox="0 0 200 208" xmlns="http://www.w3.org/2000/svg">
-  <rect x="4" y="4" width="192" height="200" rx="3" fill="#e8ddd0" stroke="#5C3A1E" stroke-width="3"/>
-  <rect x="4" y="198" width="192" height="6" rx="2" fill="#5C3A1E"/><rect x="4" y="4" width="192" height="6" rx="2" fill="#5C3A1E"/>
-  <rect x="4" y="10" width="6" height="188" fill="#c9b99a"/><rect x="190" y="10" width="6" height="188" fill="#c9b99a"/>
-  <rect x="58" y="10" width="4" height="188" fill="#8B5E3C"/>
-  <rect x="126" y="10" width="4" height="188" fill="#8B5E3C"/>
-  <!-- LEFT FIJO -->
-  <rect x="10" y="10" width="48" height="188" fill="#d4c4b0" opacity="0.45"/>
-  <rect x="10" y="103" width="48" height="3" fill="#8B5E3C"/>
-  <line x1="14" y1="22" x2="54" y2="22" stroke="#666" stroke-width="1.3"/><circle cx="14" cy="22" r="1.4" fill="#5C3A1E"/><circle cx="54" cy="22" r="1.4" fill="#5C3A1E"/>
-  <line x1="14" y1="115" x2="54" y2="115" stroke="#666" stroke-width="1.3"/><circle cx="14" cy="115" r="1.4" fill="#5C3A1E"/><circle cx="54" cy="115" r="1.4" fill="#5C3A1E"/>
-  <text x="34" y="60" font-size="6" fill="#5C3A1E" text-anchor="middle" font-style="italic">colgar</text>
-  <text x="34" y="155" font-size="6" fill="#5C3A1E" text-anchor="middle" font-style="italic">colgar</text>
-  <line x1="50" y1="14" x2="50" y2="194" stroke="#5C3A1E" stroke-width="0.5" stroke-dasharray="2,2"/>
-  <text x="34" y="190" font-size="4.5" fill="#5C3A1E" text-anchor="middle" font-style="italic">puerta corrediza</text>
-  <!-- MIDDLE: papelería + 5 cajas -->
-  <rect x="62" y="10" width="64" height="30" fill="#d4c4b0" opacity="0.55"/>
-  <text x="94" y="28" font-size="5.5" fill="#5C3A1E" text-anchor="middle" font-style="italic">papelería</text>
-  <rect x="62" y="40" width="64" height="3" fill="#5C3A1E"/>
-  <rect x="62" y="74" width="64" height="2" fill="#8B5E3C"/>
-  <rect x="62" y="105" width="64" height="2" fill="#8B5E3C"/>
-  <rect x="62" y="136" width="64" height="2" fill="#8B5E3C"/>
-  <rect x="62" y="167" width="64" height="2" fill="#8B5E3C"/>
-  <rect x="65" y="44" width="58" height="29" fill="#1a2540" stroke="#0d1530"/>
-  <rect x="65" y="77" width="58" height="27" fill="#1a2540" stroke="#0d1530"/>
-  <rect x="65" y="108" width="58" height="27" fill="#1a2540" stroke="#0d1530"/>
-  <rect x="65" y="139" width="58" height="27" fill="#1a2540" stroke="#0d1530"/>
-  <rect x="65" y="169" width="58" height="28" fill="#1a2540" stroke="#0d1530"/>
-  <!-- RIGHT: papelería + 80×90 entrepaños arriba + 80×120 libre abajo -->
-  <rect x="130" y="10" width="60" height="30" fill="#d4c4b0" opacity="0.55"/>
-  <text x="160" y="28" font-size="5.5" fill="#5C3A1E" text-anchor="middle" font-style="italic">papelería</text>
-  <rect x="130" y="40" width="60" height="3" fill="#5C3A1E"/>
-  <rect x="130" y="64" width="60" height="2" fill="#8B5E3C"/>
-  <rect x="130" y="86" width="60" height="2" fill="#8B5E3C"/>
-  <text x="160" y="58" font-size="5" fill="#8B5E3C" text-anchor="middle" font-style="italic">entrepaño</text>
-  <text x="160" y="80" font-size="5" fill="#8B5E3C" text-anchor="middle" font-style="italic">entrepaño</text>
-  <text x="160" y="103" font-size="5" fill="#8B5E3C" text-anchor="middle" font-style="italic">entrepaño</text>
-  <rect x="130" y="108" width="60" height="3" fill="#5C3A1E"/>
-  <rect x="130" y="111" width="60" height="87" fill="#fff" stroke="#1565c0" stroke-dasharray="3,2" stroke-width="1.5"/>
-  <text x="160" y="150" font-size="7" fill="#1565c0" text-anchor="middle" font-weight="bold">80×120</text>
-  <text x="160" y="161" font-size="6" fill="#1565c0" text-anchor="middle">libre</text>
-</svg></div></div>
-
-            </div>
-
-
-            <p style="margin-top:18px;font-size:.85em;color:var(--text-light);font-style:italic;">
-                * El conteo de cajas es estimado a partir del tamaño visualizado. La distribución final, dimensiones exactas
-                de los entrepaños y posición del hueco 80×120 se confirman con el cliente antes del corte.
+            <p style="margin-top:18px;font-size:.85em;color:var(--text-light);font-style:italic;text-align:center;">
+                Las dimensiones exactas de cada compartimento se confirman con el cliente antes del corte.
             </p>
         </div>
     </div>
